@@ -2155,7 +2155,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      step: 4,
+      step: 2,
       branches: _data__WEBPACK_IMPORTED_MODULE_0__.branches,
       districts: _data__WEBPACK_IMPORTED_MODULE_0__.districts,
       proviences: _data__WEBPACK_IMPORTED_MODULE_0__.proviences,
@@ -2229,8 +2229,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data */ "./resources/js/data.js");
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./resources/js/data.js");
 //
 //
 //
@@ -2437,18 +2436,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PersonalDetails",
-  components: {
-    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__.ValidationProvider
-  },
   data: function data() {
     return {
-      districts: _data__WEBPACK_IMPORTED_MODULE_1__.districts
+      districts: _data__WEBPACK_IMPORTED_MODULE_0__.districts
     };
   }
 });
@@ -62571,498 +62564,158 @@ var render = function() {
     "div",
     [
       _c(
-        "ValidationProvider",
-        { ref: "myinput", attrs: { rules: "required" } },
+        "fieldset",
+        {
+          staticClass: "border-blue px-3 pb-3",
+          staticStyle: { "border-opacity": "0.5" }
+        },
         [
-          _c(
-            "fieldset",
-            {
-              staticClass: "border-blue px-3 pb-3",
-              staticStyle: { "border-opacity": "0.5" }
-            },
-            [
-              _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
-                _vm._v("Personal Information:")
-              ]),
+          _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
+            _vm._v("Personal Information:")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("label", { attrs: { for: "initial" } }, [_vm._v("Initial")]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("label", { attrs: { for: "initial" } }, [
-                    _vm._v("Initial")
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: "'required'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "initial", name: "initial" }
+                },
+                [
+                  _c("option", { attrs: { value: "", selected: "" } }, [
+                    _vm._v("Please Select")
                   ]),
                   _vm._v(" "),
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { id: "initial", name: "initial" }
-                    },
-                    [
-                      _c("option", { attrs: { value: "", selected: "" } }, [
-                        _vm._v("Please Select")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "1" } }, [_vm._v("Mr.")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "2" } }, [_vm._v("Mrs.")]),
-                      _vm._v(" "),
-                      _c("option", { attrs: { value: "3" } }, [_vm._v("Miss.")])
-                    ]
-                  ),
+                  _c("option", { attrs: { value: "1" } }, [_vm._v("Mr.")]),
                   _vm._v(" "),
-                  _c("small", { staticClass: "text-danger form-text" }, [
-                    _vm._v(_vm._s(_vm.errors.first("initial")))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "fname" } }, [
-                      _vm._v("First Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", name: "fname", id: "fname" }
-                    }),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "text-danger form-text" }, [
-                      _vm._v(_vm._s(_vm.errors.first("fname")))
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", { attrs: { for: "mname" } }, [
-                        _vm._v("Middle Name")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "text", id: "mname" }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "lname" } }, [
-                      _vm._v("Last Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "text", id: "lname" }
-                    })
-                  ])
-                ])
-              ]),
+                  _c("option", { attrs: { value: "2" } }, [_vm._v("Mrs.")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "3" } }, [_vm._v("Miss.")])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "nationality" } }, [
-                      _vm._v("Nationality")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control",
-                        attrs: { id: "nationality" }
-                      },
-                      [
-                        _c("option", { attrs: { value: "", selected: "" } }, [
-                          _vm._v("Please Select")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "1" } }, [
-                          _vm._v("Nepalies")
-                        ])
-                      ]
-                    )
-                  ])
+              _c("small", { staticClass: "text-danger form-text" }, [
+                _vm._v(_vm._s(_vm.errors.first("initial")))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "fname" } }, [
+                  _vm._v("First Name")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "email" } }, [
-                      _vm._v("Email Address")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: { type: "email", id: "email" }
-                    })
-                  ])
-                ]),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required",
+                      expression: "'required'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "fname", id: "fname" }
+                }),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { attrs: { for: "mobile" } }, [
-                        _vm._v("Mobile Number")
-                      ]),
-                      _vm._v(" "),
-                      _c("the-mask", {
-                        staticClass: "form-control",
-                        attrs: { mask: ["##########"] }
-                      })
-                    ],
-                    1
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "maritalStatus" } }, [
-                      _vm._v("Marital Status")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control",
-                        attrs: { id: "maritalStatus" }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Please Select")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Married" } }, [
-                          _vm._v("Married")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Single" } }, [
-                          _vm._v("Single")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Other" } }, [
-                          _vm._v("Other")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "Religion" } }, [
-                      _vm._v("Religion")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control",
-                        attrs: { id: "Religion" }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Please Select")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "hindu" } }, [
-                          _vm._v("Hindu")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "buddhist" } }, [
-                          _vm._v("Buddhist")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Other" } }, [
-                          _vm._v("Other")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "Gender" } }, [
-                      _vm._v("Gender")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      { staticClass: "form-control", attrs: { id: "Gender" } },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Please Select")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "male" } }, [
-                          _vm._v("Male")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "female" } }, [
-                          _vm._v("Female")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Other" } }, [
-                          _vm._v("Other")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "education" } }, [
-                      _vm._v("Education")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      {
-                        staticClass: "form-control",
-                        attrs: { id: "education", name: "education" }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Please Select")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Literate" } }, [
-                          _vm._v(
-                            "\n                                Literate\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "SLC/SEE" } }, [
-                          _vm._v(
-                            "\n                                SLC/SEE\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Intermediate" } }, [
-                          _vm._v(
-                            "\n                                Intermediate\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Graduate" } }, [
-                          _vm._v(
-                            "\n                                Graduate\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Masters" } }, [
-                          _vm._v(
-                            "\n                                Masters\n                            "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Other" } }, [
-                          _vm._v(
-                            "\n                                Other (please specify)\n                            "
-                          )
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "spousename" } }, [
-                      _vm._v("Spouse Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "spousename",
-                        name: "spousename",
-                        value: ""
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "grandfather" } }, [
-                      _vm._v("Grand Father Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "grandfather",
-                        name: "grandfather",
-                        value: ""
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "father" } }, [
-                      _vm._v("Father Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "father",
-                        name: "father",
-                        value: ""
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "mother" } }, [
-                      _vm._v("Mother Name")
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        id: "mother",
-                        name: "mother",
-                        value: ""
-                      }
-                    })
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "Citizenshipno" } }, [
-                      _vm._v("Citizenship Certificate No."),
-                      _c("span", { staticClass: "required" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control idnumbers",
-                      attrs: {
-                        id: "citizenshipno",
-                        name: "citizenshipno",
-                        value: "",
-                        autocomplete: "off",
-                        placeholder: "Citizenship Certificate No",
-                        type: "text",
-                        required: ""
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { attrs: { for: "issuingdistrict" } }, [
-                        _vm._v("Issuing District "),
-                        _c("span", { staticClass: "required" }, [_vm._v("*")])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "v-select",
-                        { attrs: { label: "text", options: _vm.districts } },
-                        [
-                          _c("option", { attrs: { value: "" } }, [
-                            _vm._v(" Select District")
-                          ])
-                        ]
-                      )
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "issuingauthority" } }, [
-                      _vm._v("Issuing Authority "),
-                      _c("span", { staticClass: "required" }, [_vm._v("*")])
-                    ]),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        disabled: "",
-                        id: "issuingauthority",
-                        name: "issuingauthority",
-                        value: "DISTRICT ADMINISTRATION OFFICE",
-                        autocomplete: "off",
-                        placeholder: "Issuing Authority",
-                        type: "text"
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-3" }, [
-                  _c(
-                    "div",
-                    { staticClass: "form-group" },
-                    [
-                      _c("label", { attrs: { for: "cissuedate" } }, [
-                        _vm._v("Issued Date(A.D.) "),
-                        _c("span", { staticClass: "required" }, [_vm._v("*")])
-                      ]),
-                      _vm._v(" "),
-                      _c("the-mask", {
-                        staticClass: "form-control",
-                        attrs: {
-                          placeholder: "YYYY/MM/DD",
-                          mask: ["####/##/##"]
-                        }
-                      })
-                    ],
-                    1
-                  )
+                _c("small", { staticClass: "text-danger form-text" }, [
+                  _vm._v(_vm._s(_vm.errors.first("fname")))
                 ])
               ])
-            ]
-          )
+            ]),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", { attrs: { for: "mobile" } }, [
+                    _vm._v("Mobile Number")
+                  ]),
+                  _vm._v(" "),
+                  _c("the-mask", {
+                    staticClass: "form-control",
+                    attrs: { mask: ["##########"] }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _vm._m(5),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _vm._m(7),
+                  _vm._v(" "),
+                  _c(
+                    "v-select",
+                    { attrs: { label: "text", options: _vm.districts } },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v(" Select District")
+                      ])
+                    ]
+                  )
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _vm._m(9),
+                  _vm._v(" "),
+                  _c("the-mask", {
+                    staticClass: "form-control",
+                    attrs: { placeholder: "YYYY/MM/DD", mask: ["####/##/##"] }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
         ]
       ),
       _vm._v(" "),
@@ -63080,7 +62733,336 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "mname" } }, [_vm._v("Middle Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "mname" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "lname" } }, [_vm._v("Last Name")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", id: "lname" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "nationality" } }, [_vm._v("Nationality")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { id: "nationality" } },
+          [
+            _c("option", { attrs: { value: "", selected: "" } }, [
+              _vm._v("Please Select")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("Nepalies")])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "email" } }, [_vm._v("Email Address")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "email", id: "email" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "maritalStatus" } }, [
+            _vm._v("Marital Status")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            { staticClass: "form-control", attrs: { id: "maritalStatus" } },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Please Select")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Married" } }, [
+                _vm._v("Married")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Single" } }, [_vm._v("Single")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "Religion" } }, [_vm._v("Religion")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            { staticClass: "form-control", attrs: { id: "Religion" } },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Please Select")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "hindu" } }, [_vm._v("Hindu")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "buddhist" } }, [
+                _vm._v("Buddhist")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "Gender" } }, [_vm._v("Gender")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            { staticClass: "form-control", attrs: { id: "Gender" } },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Please Select")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "male" } }, [_vm._v("Male")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "female" } }, [_vm._v("Female")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other" } }, [_vm._v("Other")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "education" } }, [_vm._v("Education")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { id: "education", name: "education" }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [_vm._v("Please Select")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Literate" } }, [
+                _vm._v(
+                  "\n                            Literate\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "SLC/SEE" } }, [
+                _vm._v(
+                  "\n                            SLC/SEE\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Intermediate" } }, [
+                _vm._v(
+                  "\n                            Intermediate\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Graduate" } }, [
+                _vm._v(
+                  "\n                            Graduate\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Masters" } }, [
+                _vm._v(
+                  "\n                            Masters\n                        "
+                )
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Other" } }, [
+                _vm._v(
+                  "\n                            Other (please specify)\n                        "
+                )
+              ])
+            ]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "spousename" } }, [
+            _vm._v("Spouse Name")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "spousename",
+              name: "spousename",
+              value: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "grandfather" } }, [
+            _vm._v("Grand Father Name")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "grandfather",
+              name: "grandfather",
+              value: ""
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "father" } }, [_vm._v("Father Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "father", name: "father", value: "" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { attrs: { for: "mother" } }, [_vm._v("Mother Name")]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: { type: "text", id: "mother", name: "mother", value: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "Citizenshipno" } }, [
+          _vm._v("Citizenship Certificate No."),
+          _c("span", { staticClass: "required" }, [_vm._v("*")])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control idnumbers",
+          attrs: {
+            id: "citizenshipno",
+            name: "citizenshipno",
+            value: "",
+            autocomplete: "off",
+            placeholder: "Citizenship Certificate No",
+            type: "text",
+            required: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "issuingdistrict" } }, [
+      _vm._v("Issuing District "),
+      _c("span", { staticClass: "required" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "issuingauthority" } }, [
+          _vm._v("Issuing Authority "),
+          _c("span", { staticClass: "required" }, [_vm._v("*")])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            disabled: "",
+            id: "issuingauthority",
+            name: "issuingauthority",
+            value: "DISTRICT ADMINISTRATION OFFICE",
+            autocomplete: "off",
+            placeholder: "Issuing Authority",
+            type: "text"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "cissuedate" } }, [
+      _vm._v("Issued Date(A.D.) "),
+      _c("span", { staticClass: "required" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 

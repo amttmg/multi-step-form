@@ -45,7 +45,7 @@
     export default {
         data() {
             return {
-                step: 4,
+                step: 2,
                 branches: branches,
                 districts: districts,
                 proviences: proviences,

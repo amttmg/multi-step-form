@@ -1,217 +1,308 @@
 <template>
     <div>
-        <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
-            <legend class="w-auto px-2 text-primary">Personal Information:</legend>
-            <div class="row">
-                <div class="col-md-3">
-                    <label for="initial">Initial</label>
-                    <select v-validate="'required'" id="initial" class="form-control" name="initial">
-                        <option value="" selected>Please Select</option>
-                        <option value="1">Mr.</option>
-                        <option value="2">Mrs.</option>
-                        <option value="3">Miss.</option>
-                    </select>
-                    <small class="text-danger form-text">{{ errors.first('initial') }}</small>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="fname">First Name</label>
-                        <input v-validate="'required'" type="text" name="fname" class="form-control" id="fname">
-                        <small class="text-danger form-text">{{ errors.first('fname') }}</small>
+        {{personalInfo}}
+        <ValidationObserver ref="form">
+            <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
+                <legend class="w-auto px-2 text-primary">Personal Information:</legend>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="initial">Initial<span class="text-danger">*</span></label>
+                        <ValidationProvider name="Initial" rules="required" v-slot="{ errors }">
+                            <select v-model="personalInfo.initial" id="initial" class="form-control" name="initial">
+                                <option value="" selected>Please Select</option>
+                                <option value="1">Mr.</option>
+                                <option value="2">Mrs.</option>
+                                <option value="3">Miss.</option>
+                            </select>
+                            <small class="text-danger form-text">{{errors[0]}}</small>
+                        </ValidationProvider>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label for="mname">Middle Name</label>
-                            <input type="text" class="form-control" id="mname">
-                            <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email
-                                with anyone else.</small>-->
+                            <ValidationProvider name="First Name" rules="required" v-slot="{ errors }">
+                                <label for="fname">First Name<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.firstName" type="text" name="fname" class="form-control" id="fname">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Middle Name" rules="" v-slot="{ errors }">
+                                <label for="mname">Middle Name</label>
+                                <input v-model="personalInfo.middleName" type="text" class="form-control" id="mname">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Middle Name" rules="required" v-slot="{ errors }">
+                                <label for="lname">Last Name<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.lastName" type="text" class="form-control" id="lname">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="lname">Last Name</label>
-                        <input type="text" class="form-control" id="lname">
-                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email
-                            with anyone else.</small>-->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Nationality" rules="required" v-slot="{ errors }">
+                                <label for="nationality">Nationality<span class="text-danger">*</span></label>
+                                <select v-model="personalInfo.nationality" id="nationality" class="form-control">
+                                    <option value="" selected>Please Select</option>
+                                    <option value="1">Nepalies</option>
+                                </select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="email" rules="email" v-slot="{ errors }">
+                                <label for="email">Email Address<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.email" type="email" class="form-control" id="email">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Mobile No" rules="required|digits:10" v-slot="{ errors }">
+                                <label for="mobile">Mobile Number<span class="text-danger">*</span></label>
+                                <the-mask v-model="personalInfo.mobileNo" class="form-control" :mask="['##########']"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="nationality">Nationality</label>
-                        <select id="nationality" class="form-control">
-                            <option value="" selected>Please Select</option>
-                            <option value="1">Nepalies</option>
-                        </select>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Marital Status" rules="required" v-slot="{ errors }">
+                                <label for="maritalStatus">Marital Status<span class="text-danger">*</span></label>
+                                <select v-model="personalInfo.maritalStatus" id="maritalStatus" class="form-control">
+                                    <option value="">Please Select</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Religion" rules="required" v-slot="{ errors }">
+                                <label for="Religion">Religion<span class="text-danger">*</span></label>
+                                <select v-model="personalInfo.religion" id="Religion" class="form-control">
+                                    <option value="">Please Select</option>
+                                    <option value="hindu">Hindu</option>
+                                    <option value="buddhist">Buddhist</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Gender" rules="required" v-slot="{ errors }">
+                                <label for="Gender">Gender<span class="text-danger">*</span></label>
+                                <select v-model="personalInfo.gender" id="Gender" class="form-control">
+                                    <option value="">Please Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Education" rules="required" v-slot="{ errors }">
+                                <label for="education">Education<span class="text-danger">*</span></label>
+                                <select v-model="personalInfo.education" class="form-control" id="education" name="education">
+                                    <option value="">Please Select</option>
+                                    <option value="Literate">
+                                        Literate
+                                    </option>
+                                    <option value="SLC/SEE">
+                                        SLC/SEE
+                                    </option>
+                                    <option value="Intermediate">
+                                        Intermediate
+                                    </option>
+                                    <option value="Graduate">
+                                        Graduate
+                                    </option>
+                                    <option value="Masters">
+                                        Masters
+                                    </option>
+                                    <option value="Other">
+                                        Other (please specify)
+                                    </option>
+                                </select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email">
-                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email
-                            with anyone else.</small>-->
+                <hr/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Spouse Name" rules="required" v-slot="{ errors }">
+                                <label for="spousename">Spouse Name<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.spouseName" type="text" id="spousename" name="spousename" value=""
+                                       class="form-control">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Grandfather Name" rules="required" v-slot="{ errors }">
+                                <label for="grandfather">Grand Father Name<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.grandfatherName" type="text" id="grandfather" name="grandfather"
+                                       value=""
+                                       class="form-control">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Father Name" rules="required" v-slot="{ errors }">
+                                <label for="father">Father Name<span class="text-danger">*</span></label>
+                                <input v-model="personalInfo.fatherName" type="text" id="father" name="father" value=""
+                                       class="form-control">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Mother Name" rules="required" v-slot="{ errors }">
+                                <label for="mother">Mother Name<span class="text-danger">*</span></label>
+
+                                <input v-model="personalInfo.motherName" type="text" id="mother" name="mother" value=""
+                                       class="form-control">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number</label>
-                        <the-mask class="form-control" :mask="['##########']"/>
-                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email
-                            with anyone else.</small>-->
+                <hr/>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Citizenship Number" rules="required" v-slot="{ errors }">
+                                <label for="citizenshipno">Citizenship Certificate No.<span
+                                    class="text-danger">*</span></label>
+                                <input v-model="personalInfo.ctzNumber" class="form-control" id="citizenshipno"
+                                       name="citizenshipno"
+                                       placeholder="Citizenship Certificate No"
+                                       type="text">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Issuing District" rules="required" v-slot="{ errors }">
+                                <label for="issuingdistrict">Issuing District <span
+                                    class="text-danger">*</span></label>
+                                <v-select v-model="personalInfo.ctzIssuingDistrict" label="text" :options="districts"
+                                          id="issuingdistrict">
+                                    <option value=""> Select District</option>
+                                </v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Issuing Authority" rules="required" v-slot="{ errors }">
+                                <label for="issuingauthority">Issuing Authority <span
+                                    class="text-danger">*</span></label>
+                                <input v-model="personalInfo.ctzIssuingAuthority" disabled class="form-control" id="issuingauthority"
+                                       name="issuingauthority"
+                                       autocomplete="off" placeholder="Issuing Authority" type="text">
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <ValidationProvider name="Issued Date" rules="required" v-slot="{ errors }">
+                                <label for="cissuedate">Issued Date(B.S.)
+                                    <span class="text-danger">*</span></label>
+                                <the-mask
+                                    v-model="personalInfo.ctzIssueDate"
+                                    id="cissuedate"
+                                    class="form-control"
+                                    placeholder="YYYY/MM/DD"
+                                    :mask="['####/##/##']"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="maritalStatus">Marital Status</label>
-                        <select id="maritalStatus" class="form-control">
-                            <option value="">Please Select</option>
-                            <option value="Married">Married</option>
-                            <option value="Single">Single</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="Religion">Religion</label>
-                        <select id="Religion" class="form-control">
-                            <option value="">Please Select</option>
-                            <option value="hindu">Hindu</option>
-                            <option value="buddhist">Buddhist</option>
-                            <option value="Other">Other</option>
-                        </select>
-                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email
-                            with anyone else.</small>-->
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="Gender">Gender</label>
-                        <select id="Gender" class="form-control">
-                            <option value="">Please Select</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="education">Education</label>
-                        <select class="form-control" id="education" name="education">
-                            <option value="">Please Select</option>
-                            <option value="Literate">
-                                Literate
-                            </option>
-                            <option value="SLC/SEE">
-                                SLC/SEE
-                            </option>
-                            <option value="Intermediate">
-                                Intermediate
-                            </option>
-                            <option value="Graduate">
-                                Graduate
-                            </option>
-                            <option value="Masters">
-                                Masters
-                            </option>
-                            <option value="Other">
-                                Other (please specify)
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="spousename">Spouse Name</label>
-                        <input type="text" id="spousename" name="spousename" value=""
-                               class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="grandfather">Grand Father Name</label>
-                        <input type="text" id="grandfather" name="grandfather" value=""
-                               class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="father">Father Name</label>
-                        <input type="text" id="father" name="father" value="" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="mother">Mother Name</label>
-                        <input type="text" id="mother" name="mother" value="" class="form-control">
-                    </div>
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="Citizenshipno">Citizenship Certificate No.<span
-                            class="required">*</span></label>
-                        <input class="form-control idnumbers" id="citizenshipno"
-                               name="citizenshipno"
-                               value="" autocomplete="off" placeholder="Citizenship Certificate No"
-                               type="text" required="">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="issuingdistrict">Issuing District <span
-                            class="required">*</span></label>
-                        <v-select label="text" :options="districts">
-                            <option value=""> Select District</option>
-                        </v-select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="issuingauthority">Issuing Authority <span
-                            class="required">*</span></label>
-                        <input disabled class="form-control" id="issuingauthority"
-                               name="issuingauthority" value="DISTRICT ADMINISTRATION OFFICE"
-                               autocomplete="off" placeholder="Issuing Authority" type="text">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label for="cissuedate">Issued Date(A.D.) <span
-                            class="required">*</span></label>
-                        <the-mask class="form-control"
-                                  placeholder="YYYY/MM/DD"
-                                  :mask="['####/##/##']"/>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <action-buttons @next="$emit('next')" @back="$emit('back')"></action-buttons>
+            </fieldset>
+        </ValidationObserver>
+        <action-buttons @next="handleNext('next')" @back="handleNext('back')"></action-buttons>
     </div>
 </template>
 
 <script>
     import {districts} from '../data'
+    import {ValidationObserver, ValidationProvider} from 'vee-validate';
 
     export default {
         name: "PersonalDetails",
+        components: {ValidationObserver, ValidationProvider},
         data() {
             return {
                 districts: districts,
+                personalInfo: {
+                    initial: '',
+                    firstName: '',
+                    middleName: '',
+                    lastName: '',
+                    nationality: '',
+                    email: '',
+                    mobileNo: '',
+                    maritalStatus: '',
+                    religion: '',
+                    gender: '',
+                    education: '',
+                    spouseName: '',
+                    grandfatherName: '',
+                    fatherName: '',
+                    motherName: '',
+                    ctzNumber: '',
+                    ctzIssuingDistrict: '',
+                    ctzIssueDate: '',
+                    ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE'
+                }
+            }
+        },
+        methods: {
+            handleNext(event) {
+                console.log(this.validateForm());
+            },
+            validateForm() {
+                return this.$refs.form.validate().then(success => {
+                    console.log(success);
+                    if (!success) {
+                        return;
+                    }
+                    alert('Success!');
+                });
             }
         }
     }

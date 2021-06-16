@@ -1913,13 +1913,21 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  watch: {
+    accountInfo: {
+      handler: function handler(val) {
+        this.$emit('input', val);
+      },
+      deep: true
+    }
+  },
   methods: {
     handleNext: function handleNext(event) {
       var _this = this;
 
       this.validateForm().then(function (isSuccess) {
         if (isSuccess) {
-          _this.$emit(event);
+          _this.$emit(event, _this.accountInfo);
         }
       });
     },
@@ -2157,6 +2165,14 @@ __webpack_require__.r(__webpack_exports__);
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__.ValidationObserver,
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__.ValidationProvider
   },
+  watch: {
+    address: {
+      handler: function handler(val) {
+        this.$emit('input', val);
+      },
+      deep: true
+    }
+  },
   data: function data() {
     return {
       proviences: _data__WEBPACK_IMPORTED_MODULE_0__.proviences,
@@ -2258,14 +2274,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./resources/js/data.js");
-/* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _AccountDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AccountDetails */ "./resources/js/components/AccountDetails.vue");
-/* harmony import */ var _PersonalDetails__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PersonalDetails */ "./resources/js/components/PersonalDetails.vue");
-/* harmony import */ var _AddressDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddressDetails */ "./resources/js/components/AddressDetails.vue");
-/* harmony import */ var _UploadFiles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./UploadFiles */ "./resources/js/components/UploadFiles.vue");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _AccountDetails__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AccountDetails */ "./resources/js/components/AccountDetails.vue");
+/* harmony import */ var _PersonalDetails__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PersonalDetails */ "./resources/js/components/PersonalDetails.vue");
+/* harmony import */ var _AddressDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddressDetails */ "./resources/js/components/AddressDetails.vue");
+/* harmony import */ var _UploadFiles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UploadFiles */ "./resources/js/components/UploadFiles.vue");
 //
 //
 //
@@ -2301,8 +2315,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
+//
+//
+//
+//
 
 
 
@@ -2311,52 +2327,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      step: 2,
-      branches: _data__WEBPACK_IMPORTED_MODULE_0__.branches,
-      districts: _data__WEBPACK_IMPORTED_MODULE_0__.districts,
-      proviences: _data__WEBPACK_IMPORTED_MODULE_0__.proviences,
-      permanentDistrictsList: [],
-      currentDistrictsList: [],
-      permanentMunicipalityList: [],
-      currentMunicipalityList: []
+      customerInfo: {
+        accountInfo: '',
+        personalInfo: '',
+        addressInfo: '',
+        documentsInfo: ''
+      },
+      step: 1
     };
   },
   components: {
-    UploadFiles: _UploadFiles__WEBPACK_IMPORTED_MODULE_6__.default,
-    AddressDetails: _AddressDetails__WEBPACK_IMPORTED_MODULE_5__.default,
-    PersonalDetails: _PersonalDetails__WEBPACK_IMPORTED_MODULE_4__.default,
-    AccountDetails: _AccountDetails__WEBPACK_IMPORTED_MODULE_3__.default,
-    TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_2__.TheMask
+    UploadFiles: _UploadFiles__WEBPACK_IMPORTED_MODULE_4__.default,
+    AddressDetails: _AddressDetails__WEBPACK_IMPORTED_MODULE_3__.default,
+    PersonalDetails: _PersonalDetails__WEBPACK_IMPORTED_MODULE_2__.default,
+    AccountDetails: _AccountDetails__WEBPACK_IMPORTED_MODULE_1__.default,
+    TheMask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__.TheMask
   },
   methods: {
-    changeCurrentProvince: function changeCurrentProvince(e) {
-      var _this = this;
-
-      (0,_functions__WEBPACK_IMPORTED_MODULE_1__.getDistricts)(e.value).then(function (res) {
-        _this.currentDistrictsList = res.data;
-      });
-    },
-    changeCurrentDistrict: function changeCurrentDistrict(e) {
-      var _this2 = this;
-
-      (0,_functions__WEBPACK_IMPORTED_MODULE_1__.getMunicipalities)(e.id).then(function (res) {
-        _this2.currentMunicipalityList = res.data;
-      });
-    },
-    changePermanentProvince: function changePermanentProvince(e) {
-      var _this3 = this;
-
-      (0,_functions__WEBPACK_IMPORTED_MODULE_1__.getDistricts)(e.value).then(function (res) {
-        _this3.permanentDistrictsList = res.data;
-      });
-    },
-    changePermanentDistrict: function changePermanentDistrict(e) {
-      var _this4 = this;
-
-      (0,_functions__WEBPACK_IMPORTED_MODULE_1__.getMunicipalities)(e.id).then(function (res) {
-        _this4.permanentMunicipalityList = res.data;
-      });
-    },
     prev: function prev() {
       this.step--;
     },
@@ -2659,6 +2646,14 @@ __webpack_require__.r(__webpack_exports__);
     ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationObserver,
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationProvider
   },
+  watch: {
+    personalInfo: {
+      handler: function handler(val) {
+        this.$emit('input', val);
+      },
+      deep: true
+    }
+  },
   data: function data() {
     return {
       districts: _data__WEBPACK_IMPORTED_MODULE_0__.districts,
@@ -2750,6 +2745,14 @@ __webpack_require__.r(__webpack_exports__);
       img: ''
     };
   },
+  watch: {
+    img: {
+      handler: function handler(val) {
+        this.$emit('input', val);
+      },
+      deep: true
+    }
+  },
   props: ['index'],
   methods: {
     uploadDocument: function uploadDocument() {
@@ -2836,14 +2839,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UploadFiles",
   components: {
     UploadButton: _UploadButton__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  watch: {
+    documents: {
+      handler: function handler(val) {
+        this.$emit('input', val);
+      },
+      deep: true
+    }
+  },
+  data: function data() {
+    return {
+      documents: {
+        citizenship: '',
+        photo: '',
+        signature: '',
+        electricityBill: ''
+      }
+    };
   }
 });
 
@@ -63248,7 +63266,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
-    _vm._v(" "),
+    _vm._v("\n    " + _vm._s(_vm.customerInfo) + "\n    "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
@@ -63351,7 +63369,14 @@ var render = function() {
                     expression: "step === 1"
                   }
                 ],
-                on: { next: _vm.next, back: _vm.prev }
+                on: { next: _vm.next, back: _vm.prev },
+                model: {
+                  value: _vm.customerInfo.accountInfo,
+                  callback: function($$v) {
+                    _vm.$set(_vm.customerInfo, "accountInfo", $$v)
+                  },
+                  expression: "customerInfo.accountInfo"
+                }
               }),
               _vm._v(" "),
               _c("personal-details", {
@@ -63363,7 +63388,14 @@ var render = function() {
                     expression: "step === 2"
                   }
                 ],
-                on: { next: _vm.next, back: _vm.prev }
+                on: { next: _vm.next, back: _vm.prev },
+                model: {
+                  value: _vm.customerInfo.personalInfo,
+                  callback: function($$v) {
+                    _vm.$set(_vm.customerInfo, "personalInfo", $$v)
+                  },
+                  expression: "customerInfo.personalInfo"
+                }
               }),
               _vm._v(" "),
               _c("address-details", {
@@ -63375,7 +63407,14 @@ var render = function() {
                     expression: "step === 3"
                   }
                 ],
-                on: { next: _vm.next, back: _vm.prev }
+                on: { next: _vm.next, back: _vm.prev },
+                model: {
+                  value: _vm.customerInfo.addressInfo,
+                  callback: function($$v) {
+                    _vm.$set(_vm.customerInfo, "addressInfo", $$v)
+                  },
+                  expression: "customerInfo.addressInfo"
+                }
               }),
               _vm._v(" "),
               _c("upload-files", {
@@ -63387,7 +63426,14 @@ var render = function() {
                     expression: "step === 4"
                   }
                 ],
-                on: { next: _vm.next, back: _vm.prev }
+                on: { next: _vm.next, back: _vm.prev },
+                model: {
+                  value: _vm.customerInfo.documentsInfo,
+                  callback: function($$v) {
+                    _vm.$set(_vm.customerInfo, "documentsInfo", $$v)
+                  },
+                  expression: "customerInfo.documentsInfo"
+                }
               })
             ],
             1
@@ -65045,41 +65091,89 @@ var render = function() {
                   _c(
                     "td",
                     { attrs: { width: "40%" } },
-                    [_c("upload-button", { attrs: { index: "1" } })],
+                    [
+                      _c("upload-button", {
+                        attrs: { index: "1" },
+                        model: {
+                          value: _vm.documents.citizenship,
+                          callback: function($$v) {
+                            _vm.$set(_vm.documents, "citizenship", $$v)
+                          },
+                          expression: "documents.citizenship"
+                        }
+                      })
+                    ],
                     1
                   )
                 ]),
                 _vm._v(" "),
                 _c("tr", [
-                  _c("td", [_vm._v("2.")]),
+                  _c("td", [_vm._v("3.")]),
                   _vm._v(" "),
                   _vm._m(1),
                   _vm._v(" "),
-                  _c("td", [_c("upload-button", { attrs: { index: "2" } })], 1)
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("3.")]),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("td", [_c("upload-button", { attrs: { index: "3" } })], 1)
+                  _c(
+                    "td",
+                    [
+                      _c("upload-button", {
+                        attrs: { index: "3" },
+                        model: {
+                          value: _vm.documents.photo,
+                          callback: function($$v) {
+                            _vm.$set(_vm.documents, "photo", $$v)
+                          },
+                          expression: "documents.photo"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ]),
                 _vm._v(" "),
                 _c("tr", [
                   _c("td", [_vm._v("4.")]),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
-                  _c("td", [_c("upload-button", { attrs: { index: "4" } })], 1)
+                  _c(
+                    "td",
+                    [
+                      _c("upload-button", {
+                        attrs: { index: "4" },
+                        model: {
+                          value: _vm.documents.signature,
+                          callback: function($$v) {
+                            _vm.$set(_vm.documents, "signature", $$v)
+                          },
+                          expression: "documents.signature"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ]),
                 _vm._v(" "),
                 _c("tr", [
                   _c("td", [_vm._v("5.")]),
                   _vm._v(" "),
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
-                  _c("td", [_c("upload-button", { attrs: { index: "5" } })], 1)
+                  _c(
+                    "td",
+                    [
+                      _c("upload-button", {
+                        attrs: { index: "5" },
+                        model: {
+                          value: _vm.documents.electricityBill,
+                          callback: function($$v) {
+                            _vm.$set(_vm.documents, "electricityBill", $$v)
+                          },
+                          expression: "documents.electricityBill"
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ])
               ])
             ])
@@ -65109,12 +65203,6 @@ var staticRenderFns = [
     return _c("td", { attrs: { width: "50%" } }, [
       _c("strong", [_vm._v("Citizenship Front")])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("Citizenship Back")])])
   },
   function() {
     var _vm = this

@@ -35,6 +35,14 @@
                 img: ''
             }
         },
+        watch: {
+            img: {
+                handler(val) {
+                    this.$emit('input', val)
+                },
+                deep: true
+            }
+        },
         props: ['index'],
         methods: {
             uploadDocument() {

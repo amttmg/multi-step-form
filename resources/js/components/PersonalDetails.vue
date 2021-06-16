@@ -269,6 +269,14 @@
     export default {
         name: "PersonalDetails",
         components: {ValidationObserver, ValidationProvider},
+        watch: {
+            personalInfo: {
+                handler(val) {
+                    this.$emit('input', val)
+                },
+                deep: true
+            }
+        },
         data() {
             return {
                 districts: districts,

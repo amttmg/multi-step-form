@@ -173,6 +173,14 @@
     export default {
         name: "AddressDetails",
         components: {ValidationObserver, ValidationProvider},
+        watch: {
+            address: {
+                handler(val) {
+                    this.$emit('input', val)
+                },
+                deep: true
+            }
+        },
         data() {
             return {
                 proviences: proviences,

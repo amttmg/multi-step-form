@@ -63,11 +63,19 @@
                 }
             }
         },
+        watch: {
+            accountInfo: {
+                handler(val) {
+                    this.$emit('input', val)
+                },
+                deep: true
+            }
+        },
         methods: {
             handleNext(event) {
                 this.validateForm().then(isSuccess => {
                     if (isSuccess) {
-                        this.$emit(event);
+                        this.$emit(event, this.accountInfo);
                     }
                 })
             },

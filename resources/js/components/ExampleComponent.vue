@@ -5,6 +5,7 @@
                 <img width="250px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
             </div>
         </div>
+        {{customerInfo}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -22,20 +23,21 @@
                             <li @click="set(5)" v-bind:class="{ active: step === 5 }" id="confirm">
                                 <strong>Finish</strong></li>
                         </ul> <!-- fieldsets -->
-                        <account-details @next="next" @back="prev" v-show="step === 1"></account-details>
-                        <personal-details @next="next" @back="prev" v-show="step === 2"></personal-details>
-                        <address-details @next="next" @back="prev" v-show="step === 3"></address-details>
-                        <upload-files @next="next" @back="prev" v-show="step === 4"></upload-files>
+                        <account-details v-model="customerInfo.accountInfo" @next="next" @back="prev"
+                                         v-show="step === 1"></account-details>
+                        <personal-details v-model="customerInfo.personalInfo" @next="next" @back="prev"
+                                          v-show="step === 2"></personal-details>
+                        <address-details v-model="customerInfo.addressInfo" @next="next" @back="prev"
+                                         v-show="step === 3"></address-details>
+                        <upload-files v-model="customerInfo.documentsInfo" @next="next" @back="prev"
+                                      v-show="step === 4"></upload-files>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </template>
 <script>
-    import {branches, districts, proviences} from '../data'
-    import {getDistricts, getMunicipalities} from '../functions'
     import {TheMask} from 'vue-the-mask'
     import AccountDetails from "./AccountDetails";
     import PersonalDetails from "./PersonalDetails";
@@ -45,38 +47,17 @@
     export default {
         data() {
             return {
-                step: 2,
-                branches: branches,
-                districts: districts,
-                proviences: proviences,
-                permanentDistrictsList: [],
-                currentDistrictsList: [],
-                permanentMunicipalityList: [],
-                currentMunicipalityList: [],
+                customerInfo: {
+                    accountInfo: '',
+                    personalInfo: '',
+                    addressInfo: '',
+                    documentsInfo: '',
+                },
+                step: 1,
             }
         },
         components: {UploadFiles, AddressDetails, PersonalDetails, AccountDetails, TheMask},
         methods: {
-            changeCurrentProvince(e) {
-                getDistricts(e.value).then(res => {
-                    this.currentDistrictsList = res.data;
-                })
-            },
-            changeCurrentDistrict(e) {
-                getMunicipalities(e.id).then(res => {
-                    this.currentMunicipalityList = res.data;
-                })
-            },
-            changePermanentProvince(e) {
-                getDistricts(e.value).then(res => {
-                    this.permanentDistrictsList = res.data;
-                })
-            },
-            changePermanentDistrict(e) {
-                getMunicipalities(e.id).then(res => {
-                    this.permanentMunicipalityList = res.data;
-                })
-            },
             prev() {
                 this.step--;
             },

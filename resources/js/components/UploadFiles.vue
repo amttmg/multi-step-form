@@ -9,33 +9,30 @@
                             <td width="10%">1.</td>
                             <td width="50%"><strong>Citizenship Front</strong></td>
                             <td width="40%">
-                                <upload-button index="1"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td><strong>Citizenship Back</strong></td>
-                            <td>
-                                <upload-button index="2"/>
+                                <upload-button v-model="documents.citizenship" index="1"/>
                             </td>
                         </tr>
                         <tr>
                             <td>3.</td>
                             <td><strong>Photo</strong></td>
                             <td>
-                                <upload-button index="3"/>
+                                <upload-button v-model="documents.photo" index="3"/>
                             </td>
                         </tr>
 
                         <tr>
                             <td>4.</td>
                             <td><strong>Signature</strong></td>
-                            <td><upload-button index="4"/></td>
+                            <td>
+                                <upload-button v-model="documents.signature" index="4"/>
+                            </td>
                         </tr>
                         <tr>
                             <td>5.</td>
                             <td><strong>Electricity Bill</strong></td>
-                            <td><upload-button index="5"/></td>
+                            <td>
+                                <upload-button v-model="documents.electricityBill" index="5"/>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -50,7 +47,25 @@
 
     export default {
         name: "UploadFiles",
-        components: {UploadButton}
+        components: {UploadButton},
+        watch: {
+            documents: {
+                handler(val) {
+                    this.$emit('input', val)
+                },
+                deep: true
+            }
+        },
+        data() {
+            return {
+                documents: {
+                    citizenship: '',
+                    photo: '',
+                    signature: '',
+                    electricityBill: ''
+                }
+            }
+        }
     }
 </script>
 

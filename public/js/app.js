@@ -1846,6 +1846,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./resources/js/data.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1882,12 +1896,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AccountDetails",
+  components: {
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationObserver,
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationProvider
+  },
   data: function data() {
     return {
-      branches: _data__WEBPACK_IMPORTED_MODULE_0__.branches
+      branches: _data__WEBPACK_IMPORTED_MODULE_0__.branches,
+      accountInfo: {
+        branch: '',
+        acType: '',
+        acNumber: ''
+      }
     };
+  },
+  methods: {
+    handleNext: function handleNext(event) {
+      var _this = this;
+
+      this.validateForm().then(function (isSuccess) {
+        if (isSuccess) {
+          _this.$emit(event);
+        }
+      });
+    },
+    validateForm: function validateForm() {
+      return this.$refs.form.validate();
+    }
   }
 });
 
@@ -1942,6 +1980,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data */ "./resources/js/data.js");
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions */ "./resources/js/functions.js");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 //
 //
 //
@@ -2044,17 +2083,106 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AddressDetails",
+  components: {
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_2__.ValidationObserver,
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_2__.ValidationProvider
+  },
   data: function data() {
     return {
       proviences: _data__WEBPACK_IMPORTED_MODULE_0__.proviences,
       permanentDistrictsList: [],
       currentDistrictsList: [],
       permanentMunicipalityList: [],
-      currentMunicipalityList: []
+      currentMunicipalityList: [],
+      address: {
+        sameAsPermanent: false,
+        permanentAddress: {
+          province: '',
+          district: '',
+          municipality: '',
+          ward: '',
+          street: '',
+          address: ''
+        },
+        currentAddress: {
+          province: '',
+          district: '',
+          municipality: '',
+          ward: '',
+          street: '',
+          address: ''
+        }
+      }
     };
   },
   methods: {
@@ -2085,6 +2213,34 @@ __webpack_require__.r(__webpack_exports__);
       (0,_functions__WEBPACK_IMPORTED_MODULE_1__.getMunicipalities)(e.id).then(function (res) {
         _this4.permanentMunicipalityList = res.data;
       });
+    },
+    handleNext: function handleNext(event) {
+      var _this5 = this;
+
+      this.validateForm().then(function (isSuccess) {
+        if (isSuccess) {
+          _this5.$emit(event);
+        }
+      });
+    },
+    validateForm: function validateForm() {
+      return this.$refs.form.validate();
+    },
+    copyAddress: function copyAddress(e) {
+      console.log(this.address.sameAsPermanent);
+
+      if (this.address.sameAsPermanent) {
+        this.address.currentAddress = this.address.permanentAddress;
+      } else {
+        this.address.currentAddress = {
+          province: '',
+          district: '',
+          municipality: '',
+          ward: '',
+          street: '',
+          address: ''
+        };
+      }
     }
   }
 });
@@ -2491,6 +2647,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2527,18 +2687,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleNext: function handleNext(event) {
-      console.log(this.validateForm());
+      var _this = this;
+
+      this.validateForm().then(function (isSuccess) {
+        if (isSuccess) {
+          _this.$emit(event);
+        }
+      });
     },
     validateForm: function validateForm() {
-      return this.$refs.form.validate().then(function (success) {
-        console.log(success);
-
-        if (!success) {
-          return;
-        }
-
-        alert('Success!');
-      });
+      return this.$refs.form.validate();
     }
   }
 });
@@ -62004,94 +62162,182 @@ var render = function() {
     "div",
     [
       _c(
-        "fieldset",
-        {
-          staticClass: "border-blue px-3 pb-3",
-          staticStyle: { "border-opacity": "0.5" }
-        },
+        "ValidationObserver",
+        { ref: "form" },
         [
-          _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
-            _vm._v("Account Information:")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "branch" } }, [_vm._v("Branch")]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      id: "branch",
-                      label: "text",
-                      placeholder: "Please Select",
-                      options: _vm.branches
-                    }
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c("label", { attrs: { for: "acType" } }, [
-                      _vm._v("Account Type")
-                    ]),
-                    _vm._v(" "),
-                    _c("v-select", {
-                      attrs: {
-                        placeholder: "Please Select",
-                        options: ["Saving", "Current", "Loan"]
-                      }
-                    })
-                  ],
-                  1
-                )
+          _c(
+            "fieldset",
+            {
+              staticClass: "border-blue px-3 pb-3",
+              staticStyle: { "border-opacity": "0.5" }
+            },
+            [
+              _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
+                _vm._v("Account Information:")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("ValidationProvider", {
+                        attrs: { name: "Branch", rules: "required" },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(ref) {
+                              var errors = ref.errors
+                              return [
+                                _c("label", { attrs: { for: "branch" } }, [
+                                  _vm._v("Branch")
+                                ]),
+                                _vm._v(" "),
+                                _c("v-select", {
+                                  attrs: {
+                                    id: "branch",
+                                    label: "text",
+                                    placeholder: "Please Select",
+                                    options: _vm.branches
+                                  },
+                                  model: {
+                                    value: _vm.accountInfo.branch,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.accountInfo, "branch", $$v)
+                                    },
+                                    expression: "accountInfo.branch"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "small",
+                                  { staticClass: "text-danger form-text" },
+                                  [_vm._v(_vm._s(errors[0]))]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("ValidationProvider", {
+                          attrs: { name: "Account Type", rules: "required" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("label", { attrs: { for: "acType" } }, [
+                                    _vm._v("Account Type")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-select", {
+                                    attrs: {
+                                      placeholder: "Please Select",
+                                      options: ["Saving", "Current", "Loan"]
+                                    },
+                                    model: {
+                                      value: _vm.accountInfo.acType,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.accountInfo, "acType", $$v)
+                                      },
+                                      expression: "accountInfo.acType"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "text-danger form-text" },
+                                    [_vm._v(_vm._s(errors[0]))]
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("ValidationProvider", {
+                        attrs: {
+                          name: "Account Number",
+                          rules: "required|digits:16"
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "default",
+                            fn: function(ref) {
+                              var errors = ref.errors
+                              return [
+                                _c("label", { attrs: { for: "acNumber" } }, [
+                                  _vm._v("Account Number")
+                                ]),
+                                _vm._v(" "),
+                                _c("the-mask", {
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    placeholder:
+                                      "Please enter 16 digit account number",
+                                    mask: ["################"]
+                                  },
+                                  model: {
+                                    value: _vm.accountInfo.acNumber,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.accountInfo, "acNumber", $$v)
+                                    },
+                                    expression: "accountInfo.acNumber"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "small",
+                                  { staticClass: "text-danger form-text" },
+                                  [_vm._v(_vm._s(errors[0]))]
+                                )
+                              ]
+                            }
+                          }
+                        ])
+                      })
+                    ],
+                    1
+                  )
+                ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "acNumber" } }, [
-                    _vm._v("Account Number")
-                  ]),
-                  _vm._v(" "),
-                  _c("the-mask", {
-                    staticClass: "form-control",
-                    attrs: {
-                      placeholder: "Please enter 16 digit account number",
-                      mask: ["################"]
-                    }
-                  })
-                ],
-                1
-              )
-            ])
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("action-buttons", {
-        attrs: { back: false },
-        on: {
-          next: function($event) {
-            return _vm.$emit("next")
-          },
-          back: function($event) {
-            return _vm.$emit("back")
-          }
-        }
-      })
+            ]
+          ),
+          _vm._v(" "),
+          _c("action-buttons", {
+            attrs: { back: false },
+            on: {
+              next: function($event) {
+                return _vm.handleNext("next")
+              }
+            }
+          })
+        ],
+        1
+      )
     ],
     1
   )
@@ -62181,177 +62427,795 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "fieldset",
-        {
-          staticClass: "border-blue px-3 pb-3",
-          staticStyle: { "border-opacity": "0.5" }
-        },
-        [
-          _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
-            _vm._v("Permanent Address:")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "province" } }, [
-                    _vm._v("Province")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "text",
-                      options: _vm.proviences,
-                      placeholder: "Please Select"
-                    },
-                    on: { input: _vm.changePermanentProvince }
-                  })
-                ],
-                1
-              )
+      _c("ValidationObserver", { ref: "form" }, [
+        _c(
+          "fieldset",
+          {
+            staticClass: "border-blue px-3 pb-3",
+            staticStyle: { "border-opacity": "0.5" }
+          },
+          [
+            _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
+              _vm._v("Permanent Address:")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "district" } }, [
-                    _vm._v("District: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "districtName",
-                      options: _vm.permanentDistrictsList,
-                      placeholder: "Please Select"
-                    },
-                    on: { input: _vm.changePermanentDistrict }
-                  })
-                ],
-                1
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Province", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "province" } }, [
+                                _vm._v("Province")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "text",
+                                  options: _vm.proviences,
+                                  placeholder: "Please Select"
+                                },
+                                on: { input: _vm.changePermanentProvince },
+                                model: {
+                                  value: _vm.address.permanentAddress.province,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "province",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "address.permanentAddress.province"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "District", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "district" } }, [
+                                _vm._v("District: ")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "districtName",
+                                  options: _vm.permanentDistrictsList,
+                                  placeholder: "Please Select"
+                                },
+                                on: { input: _vm.changePermanentDistrict },
+                                model: {
+                                  value: _vm.address.permanentAddress.district,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "district",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "address.permanentAddress.district"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Municipality", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "Municipality" } }, [
+                                _vm._v("Municipality: ")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "municipalityName",
+                                  options: _vm.permanentMunicipalityList,
+                                  placeholder: "Please Select"
+                                },
+                                model: {
+                                  value:
+                                    _vm.address.permanentAddress.municipality,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "municipality",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "address.permanentAddress.municipality"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "Municipality" } }, [
-                    _vm._v("Municipality: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "municipalityName",
-                      options: _vm.permanentMunicipalityList,
-                      placeholder: "Please Select"
-                    }
-                  })
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Tole/Street", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "tole" } }, [
+                                _vm._v("Tole/Street")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.permanentAddress.street,
+                                    expression:
+                                      "address.permanentAddress.street"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "tole" },
+                                domProps: {
+                                  value: _vm.address.permanentAddress.street
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "street",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Ward No", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "ward" } }, [
+                                _vm._v("Ward No")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.permanentAddress.ward,
+                                    expression: "address.permanentAddress.ward"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "ward" },
+                                domProps: {
+                                  value: _vm.address.permanentAddress.ward
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "ward",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Address", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "address" } }, [
+                                _vm._v("Address")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.permanentAddress.address,
+                                    expression:
+                                      "address.permanentAddress.address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "address" },
+                                domProps: {
+                                  value: _vm.address.permanentAddress.address
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.permanentAddress,
+                                      "address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "row my-4" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "form-check" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.address.sameAsPermanent,
+                    expression: "address.sameAsPermanent"
+                  }
                 ],
-                1
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", value: "1", id: "flexCheckDefault" },
+                domProps: {
+                  checked: Array.isArray(_vm.address.sameAsPermanent)
+                    ? _vm._i(_vm.address.sameAsPermanent, "1") > -1
+                    : _vm.address.sameAsPermanent
+                },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$a = _vm.address.sameAsPermanent,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = "1",
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.address,
+                              "sameAsPermanent",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.address,
+                              "sameAsPermanent",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.address, "sameAsPermanent", $$c)
+                      }
+                    },
+                    _vm.copyAddress
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: "flexCheckDefault" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Current address is same as permanent Address\n                    "
+                  )
+                ]
               )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(0)
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "fieldset",
-        {
-          staticClass: "border-blue px-3 pb-3",
-          staticStyle: { "border-opacity": "0.5" }
-        },
-        [
-          _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
-            _vm._v("Current Address:")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "province" } }, [
-                    _vm._v("Province")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "text",
-                      options: _vm.proviences,
-                      placeholder: "Please Select"
-                    },
-                    on: { input: _vm.changeCurrentProvince }
-                  })
-                ],
-                1
-              )
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "fieldset",
+          {
+            staticClass: "border-blue px-3 pb-3",
+            staticStyle: { "border-opacity": "0.5" }
+          },
+          [
+            _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
+              _vm._v("Current Address:")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "district" } }, [
-                    _vm._v("District: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "districtName",
-                      options: _vm.currentDistrictsList,
-                      placeholder: "Please Select"
-                    },
-                    on: { input: _vm.changeCurrentDistrict }
-                  })
-                ],
-                1
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Province", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "province" } }, [
+                                _vm._v("Province")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "text",
+                                  options: _vm.proviences,
+                                  placeholder: "Please Select"
+                                },
+                                on: { input: _vm.changeCurrentProvince },
+                                model: {
+                                  value: _vm.address.currentAddress.province,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "province",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "address.currentAddress.province"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "District", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "district" } }, [
+                                _vm._v("District: ")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "districtName",
+                                  options: _vm.currentDistrictsList,
+                                  placeholder: "Please Select"
+                                },
+                                on: { input: _vm.changeCurrentDistrict },
+                                model: {
+                                  value: _vm.address.currentAddress.district,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "district",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "address.currentAddress.district"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Municipality", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "Municipality" } }, [
+                                _vm._v("Municipality: ")
+                              ]),
+                              _vm._v(" "),
+                              _c("v-select", {
+                                attrs: {
+                                  label: "municipalityName",
+                                  options: _vm.currentMunicipalityList,
+                                  placeholder: "Please Select"
+                                },
+                                model: {
+                                  value:
+                                    _vm.address.currentAddress.municipality,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "municipality",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "address.currentAddress.municipality"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-4" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", { attrs: { for: "Municipality" } }, [
-                    _vm._v("Municipality: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("v-select", {
-                    attrs: {
-                      label: "municipalityName",
-                      options: _vm.currentMunicipalityList,
-                      placeholder: "Please Select"
-                    }
-                  })
-                ],
-                1
-              )
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Tole/Street", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "tole" } }, [
+                                _vm._v("Tole/Street")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.currentAddress.street,
+                                    expression: "address.currentAddress.street"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "tole" },
+                                domProps: {
+                                  value: _vm.address.currentAddress.street
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "street",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Ward", rules: "required|numeric" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "ward" } }, [
+                                _vm._v("Ward No")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.currentAddress.ward,
+                                    expression: "address.currentAddress.ward"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "ward" },
+                                domProps: {
+                                  value: _vm.address.currentAddress.ward
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "ward",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("ValidationProvider", {
+                      attrs: { name: "Address", rules: "required" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "default",
+                          fn: function(ref) {
+                            var errors = ref.errors
+                            return [
+                              _c("label", { attrs: { for: "address" } }, [
+                                _vm._v("Address")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.address.currentAddress.address,
+                                    expression: "address.currentAddress.address"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                attrs: { type: "text", id: "address" },
+                                domProps: {
+                                  value: _vm.address.currentAddress.address
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.address.currentAddress,
+                                      "address",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "small",
+                                { staticClass: "text-danger form-text" },
+                                [_vm._v(_vm._s(errors[0]))]
+                              )
+                            ]
+                          }
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ])
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]
-      ),
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c("action-buttons", {
         on: {
           next: function($event) {
-            return _vm.$emit("next")
+            return _vm.handleNext("next")
           },
           back: function($event) {
-            return _vm.$emit("back")
+            return _vm.handleNext("back")
           }
         }
       })
@@ -62359,86 +63223,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "tole" } }, [_vm._v("Tole/Street")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "tole" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "ward" } }, [_vm._v("Ward No")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "ward" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "address" } }, [_vm._v("Address")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "address" }
-          })
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "tole" } }, [_vm._v("Tole/Street")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "tole" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "ward" } }, [_vm._v("Ward No")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "ward" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
-        _c("div", { staticClass: "form-group" }, [
-          _c("label", { attrs: { for: "address" } }, [_vm._v("Address")]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "form-control",
-            attrs: { type: "text", id: "address" }
-          })
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -62660,7 +63445,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n    " + _vm._s(_vm.personalInfo) + "\n    "),
       _c("ValidationObserver", { ref: "form" }, [
         _c(
           "fieldset",

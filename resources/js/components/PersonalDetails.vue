@@ -1,6 +1,5 @@
 <template>
     <div>
-        {{personalInfo}}
         <ValidationObserver ref="form">
             <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
                 <legend class="w-auto px-2 text-primary">Personal Information:</legend>
@@ -21,7 +20,8 @@
                         <div class="form-group">
                             <ValidationProvider name="First Name" rules="required" v-slot="{ errors }">
                                 <label for="fname">First Name<span class="text-danger">*</span></label>
-                                <input v-model="personalInfo.firstName" type="text" name="fname" class="form-control" id="fname">
+                                <input v-model="personalInfo.firstName" type="text" name="fname" class="form-control"
+                                       id="fname">
                                 <small class="text-danger form-text">{{errors[0]}}</small>
                             </ValidationProvider>
                         </div>
@@ -125,7 +125,8 @@
                         <div class="form-group">
                             <ValidationProvider name="Education" rules="required" v-slot="{ errors }">
                                 <label for="education">Education<span class="text-danger">*</span></label>
-                                <select v-model="personalInfo.education" class="form-control" id="education" name="education">
+                                <select v-model="personalInfo.education" class="form-control" id="education"
+                                        name="education">
                                     <option value="">Please Select</option>
                                     <option value="Literate">
                                         Literate
@@ -157,7 +158,8 @@
                         <div class="form-group">
                             <ValidationProvider name="Spouse Name" rules="required" v-slot="{ errors }">
                                 <label for="spousename">Spouse Name<span class="text-danger">*</span></label>
-                                <input v-model="personalInfo.spouseName" type="text" id="spousename" name="spousename" value=""
+                                <input v-model="personalInfo.spouseName" type="text" id="spousename" name="spousename"
+                                       value=""
                                        class="form-control">
                                 <small class="text-danger form-text">{{errors[0]}}</small>
                             </ValidationProvider>
@@ -167,7 +169,8 @@
                         <div class="form-group">
                             <ValidationProvider name="Grandfather Name" rules="required" v-slot="{ errors }">
                                 <label for="grandfather">Grand Father Name<span class="text-danger">*</span></label>
-                                <input v-model="personalInfo.grandfatherName" type="text" id="grandfather" name="grandfather"
+                                <input v-model="personalInfo.grandfatherName" type="text" id="grandfather"
+                                       name="grandfather"
                                        value=""
                                        class="form-control">
                                 <small class="text-danger form-text">{{errors[0]}}</small>
@@ -229,7 +232,8 @@
                             <ValidationProvider name="Issuing Authority" rules="required" v-slot="{ errors }">
                                 <label for="issuingauthority">Issuing Authority <span
                                     class="text-danger">*</span></label>
-                                <input v-model="personalInfo.ctzIssuingAuthority" disabled class="form-control" id="issuingauthority"
+                                <input v-model="personalInfo.ctzIssuingAuthority" disabled class="form-control"
+                                       id="issuingauthority"
                                        name="issuingauthority"
                                        autocomplete="off" placeholder="Issuing Authority" type="text">
                                 <small class="text-danger form-text">{{errors[0]}}</small>
@@ -293,16 +297,14 @@
         },
         methods: {
             handleNext(event) {
-                console.log(this.validateForm());
+                this.validateForm().then(isSuccess => {
+                    if (isSuccess) {
+                        this.$emit(event);
+                    }
+                })
             },
             validateForm() {
-                return this.$refs.form.validate().then(success => {
-                    console.log(success);
-                    if (!success) {
-                        return;
-                    }
-                    alert('Success!');
-                });
+                return this.$refs.form.validate();
             }
         }
     }

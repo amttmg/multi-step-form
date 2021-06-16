@@ -1,111 +1,178 @@
 <template>
     <div>
-        <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
-            <legend class="w-auto px-2 text-primary">Permanent Address:</legend>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="province">Province</label>
-                        <v-select v-on:input="changePermanentProvince" label="text"
-                                  :options="proviences"
-                                  placeholder="Please Select"></v-select>
+        <ValidationObserver ref="form">
+            <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
+                <legend class="w-auto px-2 text-primary">Permanent Address:</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Province" rules="required" v-slot="{ errors }">
+                                <label for="province">Province</label>
+                                <v-select v-model="address.permanentAddress.province"
+                                          v-on:input="changePermanentProvince"
+                                          label="text"
+                                          :options="proviences"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="District" rules="required" v-slot="{ errors }">
+                                <label for="district">District: </label>
+                                <v-select v-model="address.permanentAddress.district"
+                                          v-on:input="changePermanentDistrict"
+                                          label="districtName"
+                                          :options="permanentDistrictsList"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Municipality" rules="required" v-slot="{ errors }">
+                                <label for="Municipality">Municipality: </label>
+                                <v-select v-model="address.permanentAddress.municipality" label="municipalityName"
+                                          :options="permanentMunicipalityList"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="district">District: </label>
-                        <v-select v-on:input="changePermanentDistrict" label="districtName"
-                                  :options="permanentDistrictsList"
-                                  placeholder="Please Select"></v-select>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Tole/Street" rules="required" v-slot="{ errors }">
+                                <label for="tole">Tole/Street</label>
+                                <input v-model="address.permanentAddress.street" type="text" class="form-control"
+                                       id="tole"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Ward No" rules="required" v-slot="{ errors }">
+                                <label for="ward">Ward No</label>
+                                <input v-model="address.permanentAddress.ward" type="text" class="form-control"
+                                       id="ward"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
+                                <label for="address">Address</label>
+                                <input v-model="address.permanentAddress.address" type="text" class="form-control"
+                                       id="address"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Municipality">Municipality: </label>
-                        <v-select label="municipalityName" :options="permanentMunicipalityList"
-                                  placeholder="Please Select"></v-select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="tole">Tole/Street</label>
-                        <input type="text" class="form-control" id="tole"/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="ward">Ward No</label>
-                        <input type="text" class="form-control" id="ward"/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address"/>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
-            <legend class="w-auto px-2 text-primary">Current Address:</legend>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="province">Province</label>
-                        <v-select v-on:input="changeCurrentProvince" label="text"
-                                  :options="proviences"
-                                  placeholder="Please Select"></v-select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="district">District: </label>
-                        <v-select v-on:input="changeCurrentDistrict" label="districtName"
-                                  :options="currentDistrictsList"
-                                  placeholder="Please Select"></v-select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Municipality">Municipality: </label>
-                        <v-select label="municipalityName" :options="currentMunicipalityList"
-                                  placeholder="Please Select"></v-select>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="tole">Tole/Street</label>
-                        <input type="text" class="form-control" id="tole"/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="ward">Ward No</label>
-                        <input type="text" class="form-control" id="ward"/>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address"/>
+            </fieldset>
+            <div class="row my-4">
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input v-model="address.sameAsPermanent" @change="copyAddress" class="form-check-input"
+                               type="checkbox"
+                               value="1"
+                               id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Current address is same as permanent Address
+                        </label>
                     </div>
                 </div>
             </div>
-        </fieldset>
-        <action-buttons @next="$emit('next')" @back="$emit('back')"></action-buttons>
+            <fieldset class="border-blue px-3 pb-3" style="border-opacity: 0.5">
+                <legend class="w-auto px-2 text-primary">Current Address:</legend>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Province" rules="required" v-slot="{ errors }">
+                                <label for="province">Province</label>
+                                <v-select v-model="address.currentAddress.province" v-on:input="changeCurrentProvince"
+                                          label="text"
+                                          :options="proviences"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="District" rules="required" v-slot="{ errors }">
+                                <label for="district">District: </label>
+                                <v-select v-model="address.currentAddress.district" v-on:input="changeCurrentDistrict"
+                                          label="districtName"
+                                          :options="currentDistrictsList"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Municipality" rules="required" v-slot="{ errors }">
+                                <label for="Municipality">Municipality: </label>
+                                <v-select v-model="address.currentAddress.municipality" label="municipalityName"
+                                          :options="currentMunicipalityList"
+                                          placeholder="Please Select"></v-select>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Tole/Street" rules="required" v-slot="{ errors }">
+                                <label for="tole">Tole/Street</label>
+                                <input v-model="address.currentAddress.street" type="text" class="form-control"
+                                       id="tole"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Ward" rules="required|numeric" v-slot="{ errors }">
+                                <label for="ward">Ward No</label>
+                                <input v-model="address.currentAddress.ward" type="text" class="form-control"
+                                       id="ward"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
+                                <label for="address">Address</label>
+                                <input v-model="address.currentAddress.address" type="text" class="form-control"
+                                       id="address"/>
+                                <small class="text-danger form-text">{{errors[0]}}</small>
+                            </ValidationProvider>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </ValidationObserver>
+        <action-buttons @next="handleNext('next')" @back="handleNext('back')"></action-buttons>
     </div>
 </template>
 
 <script>
     import {proviences} from '../data'
     import {getDistricts, getMunicipalities} from '../functions'
+    import {ValidationObserver, ValidationProvider} from 'vee-validate';
 
     export default {
         name: "AddressDetails",
+        components: {ValidationObserver, ValidationProvider},
         data() {
             return {
                 proviences: proviences,
@@ -113,6 +180,25 @@
                 currentDistrictsList: [],
                 permanentMunicipalityList: [],
                 currentMunicipalityList: [],
+                address: {
+                    sameAsPermanent: false,
+                    permanentAddress: {
+                        province: '',
+                        district: '',
+                        municipality: '',
+                        ward: '',
+                        street: '',
+                        address: ''
+                    },
+                    currentAddress: {
+                        province: '',
+                        district: '',
+                        municipality: '',
+                        ward: '',
+                        street: '',
+                        address: ''
+                    }
+                }
             }
         },
         methods: {
@@ -136,6 +222,31 @@
                     this.permanentMunicipalityList = res.data;
                 })
             },
+            handleNext(event) {
+                this.validateForm().then(isSuccess => {
+                    if (isSuccess) {
+                        this.$emit(event);
+                    }
+                })
+            },
+            validateForm() {
+                return this.$refs.form.validate();
+            },
+            copyAddress(e) {
+                console.log(this.address.sameAsPermanent);
+                if (this.address.sameAsPermanent) {
+                    this.address.currentAddress = this.address.permanentAddress;
+                } else {
+                    this.address.currentAddress = {
+                        province: '',
+                        district: '',
+                        municipality: '',
+                        ward: '',
+                        street: '',
+                        address: ''
+                    }
+                }
+            }
         }
     }
 </script>

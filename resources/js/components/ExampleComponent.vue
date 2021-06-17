@@ -5,18 +5,23 @@
                 <img width="250px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
             </div>
         </div>
-        {{customerInfo}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <ul id="progressbar">
-                            <li @click="set(1)" v-bind:class="{ active: step === 1 }" id="account"><strong>Account
+                            <li @click="set(1)"
+                                v-bind:class="{ active: step === 1, error: customerInfo.accountInfo.hasError===1, success: customerInfo.accountInfo.hasError===0 }"
+                                id="account"><strong>Account
                                 Information</strong>
                             </li>
-                            <li @click="set(2)" v-bind:class="{ active: step === 2 }" id="personal"><strong>Personal
+                            <li @click="set(2)"
+                                v-bind:class="{ active: step === 2, error: customerInfo.personalInfo.hasError===1, success: customerInfo.personalInfo.hasError===0 }"
+                                id="personal"><strong>Personal
                                 Information</strong></li>
-                            <li @click="set(3)" v-bind:class="{ active: step === 3 }" id="address"><strong>Address
+                            <li @click="set(3)"
+                                v-bind:class="{ active: step === 3, error: customerInfo.addressInfo.hasError===1, success: customerInfo.addressInfo.hasError===0 }"
+                                id="address"><strong>Address
                                 Details</strong></li>
                             <li @click="set(4)" v-bind:class="{ active: step === 4 }" id="document">
                                 <strong>Documents Upload</strong></li>

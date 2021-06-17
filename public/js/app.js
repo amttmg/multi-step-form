@@ -1909,7 +1909,8 @@ __webpack_require__.r(__webpack_exports__);
       accountInfo: {
         branch: '',
         acType: '',
-        acNumber: ''
+        acNumber: '',
+        hasError: 2
       }
     };
   },
@@ -1928,6 +1929,10 @@ __webpack_require__.r(__webpack_exports__);
       this.validateForm().then(function (isSuccess) {
         if (isSuccess) {
           _this.$emit(event, _this.accountInfo);
+
+          _this.accountInfo.hasError = 0;
+        } else {
+          _this.accountInfo.hasError = 1;
         }
       });
     },
@@ -2182,6 +2187,7 @@ __webpack_require__.r(__webpack_exports__);
       currentMunicipalityList: [],
       address: {
         sameAsPermanent: false,
+        hasError: 2,
         permanentAddress: {
           province: '',
           district: '',
@@ -2236,6 +2242,10 @@ __webpack_require__.r(__webpack_exports__);
       this.validateForm().then(function (isSuccess) {
         if (isSuccess) {
           _this5.$emit(event);
+
+          _this5.address.hasError = 0;
+        } else {
+          _this5.address.hasError = 1;
         }
       });
     },
@@ -2280,6 +2290,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _PersonalDetails__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PersonalDetails */ "./resources/js/components/PersonalDetails.vue");
 /* harmony import */ var _AddressDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddressDetails */ "./resources/js/components/AddressDetails.vue");
 /* harmony import */ var _UploadFiles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UploadFiles */ "./resources/js/components/UploadFiles.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2676,7 +2691,8 @@ __webpack_require__.r(__webpack_exports__);
         ctzNumber: '',
         ctzIssuingDistrict: '',
         ctzIssueDate: '',
-        ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE'
+        ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE',
+        hasError: 2
       }
     };
   },
@@ -2687,6 +2703,10 @@ __webpack_require__.r(__webpack_exports__);
       this.validateForm().then(function (isSuccess) {
         if (isSuccess) {
           _this.$emit(event);
+
+          _this.personalInfo.hasError = 0;
+        } else {
+          _this.personalInfo.hasError = 1;
         }
       });
     },
@@ -63266,7 +63286,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
-    _vm._v("\n    " + _vm._s(_vm.customerInfo) + "\n    "),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
@@ -63278,7 +63298,11 @@ var render = function() {
                 _c(
                   "li",
                   {
-                    class: { active: _vm.step === 1 },
+                    class: {
+                      active: _vm.step === 1,
+                      error: _vm.customerInfo.accountInfo.hasError === 1,
+                      success: _vm.customerInfo.accountInfo.hasError === 0
+                    },
                     attrs: { id: "account" },
                     on: {
                       click: function($event) {
@@ -63296,7 +63320,11 @@ var render = function() {
                 _c(
                   "li",
                   {
-                    class: { active: _vm.step === 2 },
+                    class: {
+                      active: _vm.step === 2,
+                      error: _vm.customerInfo.personalInfo.hasError === 1,
+                      success: _vm.customerInfo.personalInfo.hasError === 0
+                    },
                     attrs: { id: "personal" },
                     on: {
                       click: function($event) {
@@ -63316,7 +63344,11 @@ var render = function() {
                 _c(
                   "li",
                   {
-                    class: { active: _vm.step === 3 },
+                    class: {
+                      active: _vm.step === 3,
+                      error: _vm.customerInfo.addressInfo.hasError === 1,
+                      success: _vm.customerInfo.addressInfo.hasError === 0
+                    },
                     attrs: { id: "address" },
                     on: {
                       click: function($event) {

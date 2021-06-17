@@ -60,6 +60,7 @@
                     branch: '',
                     acType: '',
                     acNumber: '',
+                    hasError: 2,
                 }
             }
         },
@@ -76,6 +77,9 @@
                 this.validateForm().then(isSuccess => {
                     if (isSuccess) {
                         this.$emit(event, this.accountInfo);
+                        this.accountInfo.hasError = 0;
+                    } else {
+                        this.accountInfo.hasError = 1;
                     }
                 })
             },

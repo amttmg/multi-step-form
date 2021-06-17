@@ -190,6 +190,7 @@
                 currentMunicipalityList: [],
                 address: {
                     sameAsPermanent: false,
+                    hasError: 2,
                     permanentAddress: {
                         province: '',
                         district: '',
@@ -234,6 +235,9 @@
                 this.validateForm().then(isSuccess => {
                     if (isSuccess) {
                         this.$emit(event);
+                        this.address.hasError = 0;
+                    } else {
+                        this.address.hasError = 1;
                     }
                 })
             },

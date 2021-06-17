@@ -625,6 +625,10 @@
   color: #F50002;
 }
 
+#progressbar .success {
+  color: #0f6674;
+}
+
 #progressbar li {
   list-style-type: none;
   font-size: 15px;
@@ -692,6 +696,11 @@
 #progressbar li.error:before,
 #progressbar li.error:after {
   background: #F50002;
+}
+
+#progressbar li.success:before,
+#progressbar li.success:after {
+  background: #0f6674;
 }
 
 .progress {

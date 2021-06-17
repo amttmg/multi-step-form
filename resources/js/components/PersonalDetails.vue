@@ -299,15 +299,19 @@
                     ctzNumber: '',
                     ctzIssuingDistrict: '',
                     ctzIssueDate: '',
-                    ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE'
-                }
+                    ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE',
+                    hasError: 2,
             }
+        }
         },
         methods: {
             handleNext(event) {
                 this.validateForm().then(isSuccess => {
                     if (isSuccess) {
                         this.$emit(event);
+                        this.personalInfo.hasError = 0;
+                    } else {
+                        this.personalInfo.hasError = 1;
                     }
                 })
             },

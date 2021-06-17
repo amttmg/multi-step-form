@@ -23,7 +23,9 @@
                                 v-bind:class="{ active: step === 3, error: customerInfo.addressInfo.hasError===1, success: customerInfo.addressInfo.hasError===0 }"
                                 id="address"><strong>Address
                                 Details</strong></li>
-                            <li @click="set(4)" v-bind:class="{ active: step === 4 }" id="document">
+                            <li @click="set(4)"
+                                v-bind:class="{ active: step === 4, error: customerInfo.documentsInfo.hasError===1, success: customerInfo.documentsInfo.hasError===0 }"
+                                id="document">
                                 <strong>Documents Upload</strong></li>
                             <li @click="set(5)" v-bind:class="{ active: step === 5 }" id="confirm">
                                 <strong>Finish</strong></li>

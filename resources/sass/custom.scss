@@ -131,7 +131,8 @@
 }
 
 #progressbar .active {
-    color: $brand-blue
+    color: $brand-blue;
+    font-weight: bold;
 }
 
 #progressbar .error {
@@ -203,7 +204,7 @@
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: $brand-blue
+    background: $brand-blue;
 }
 
 #progressbar li.error:before,

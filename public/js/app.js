@@ -2334,6 +2334,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -2815,6 +2817,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _UploadButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UploadButton */ "./resources/js/components/UploadButton.vue");
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2860,10 +2877,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UploadFiles",
   components: {
-    UploadButton: _UploadButton__WEBPACK_IMPORTED_MODULE_0__.default
+    UploadButton: _UploadButton__WEBPACK_IMPORTED_MODULE_0__.default,
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationProvider,
+    ValidationObserver: vee_validate__WEBPACK_IMPORTED_MODULE_1__.ValidationObserver
   },
   watch: {
     documents: {
@@ -2876,12 +2896,31 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       documents: {
+        hasError: 2,
         citizenship: '',
         photo: '',
         signature: '',
         electricityBill: ''
       }
     };
+  },
+  methods: {
+    validateForm: function validateForm() {
+      return this.$refs.form.validate();
+    },
+    handleNext: function handleNext(event) {
+      var _this = this;
+
+      this.validateForm().then(function (isSuccess) {
+        if (isSuccess) {
+          _this.$emit(event);
+
+          _this.documents.hasError = 0;
+        } else {
+          _this.documents.hasError = 1;
+        }
+      });
+    }
   }
 });
 
@@ -63366,7 +63405,11 @@ var render = function() {
                 _c(
                   "li",
                   {
-                    class: { active: _vm.step === 4 },
+                    class: {
+                      active: _vm.step === 4,
+                      error: _vm.customerInfo.documentsInfo.hasError === 1,
+                      success: _vm.customerInfo.documentsInfo.hasError === 0
+                    },
                     attrs: { id: "document" },
                     on: {
                       click: function($event) {
@@ -65101,125 +65144,220 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "fieldset",
-        {
-          staticClass: "border-blue px-3 pb-3",
-          staticStyle: { "border-opacity": "0.5" }
-        },
-        [
-          _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
-            _vm._v("Document Upload:")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("table", { staticClass: "table table-bordered" }, [
-                _c("tr", [
-                  _c("td", { attrs: { width: "10%" } }, [_vm._v("1.")]),
+      _c("ValidationObserver", { ref: "form" }, [
+        _c(
+          "fieldset",
+          {
+            staticClass: "border-blue px-3 pb-3",
+            staticStyle: { "border-opacity": "0.5" }
+          },
+          [
+            _c("legend", { staticClass: "w-auto px-2 text-primary" }, [
+              _vm._v("Document Upload:")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("table", { staticClass: "table table-bordered" }, [
+                  _c("tr", [
+                    _c("td", { attrs: { width: "10%" } }, [_vm._v("1.")]),
+                    _vm._v(" "),
+                    _c("td", { attrs: { width: "50%" } }, [
+                      _c("strong", [_vm._v("Citizenship Front")])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { attrs: { width: "40%" } },
+                      [
+                        _c("ValidationProvider", {
+                          attrs: { name: "Citizenship", rules: "required" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("upload-button", {
+                                    attrs: { index: "1" },
+                                    model: {
+                                      value: _vm.documents.citizenship,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.documents,
+                                          "citizenship",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "documents.citizenship"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "text-danger form-text" },
+                                    [_vm._v(_vm._s(errors[0]))]
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
-                  _vm._m(0),
+                  _c("tr", [
+                    _c("td", [_vm._v("3.")]),
+                    _vm._v(" "),
+                    _c("td", [_c("strong", [_vm._v("Photo")])]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("ValidationProvider", {
+                          attrs: { name: "Photo", rules: "required" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("upload-button", {
+                                    attrs: { index: "3" },
+                                    model: {
+                                      value: _vm.documents.photo,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.documents, "photo", $$v)
+                                      },
+                                      expression: "documents.photo"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "text-danger form-text" },
+                                    [_vm._v(_vm._s(errors[0]))]
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "td",
-                    { attrs: { width: "40%" } },
-                    [
-                      _c("upload-button", {
-                        attrs: { index: "1" },
-                        model: {
-                          value: _vm.documents.citizenship,
-                          callback: function($$v) {
-                            _vm.$set(_vm.documents, "citizenship", $$v)
+                  _c("tr", [
+                    _c("td", [_vm._v("4.")]),
+                    _vm._v(" "),
+                    _c("td", [_c("strong", [_vm._v("Signature")])]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("ValidationProvider", {
+                          attrs: { name: "Signature", rules: "required" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("upload-button", {
+                                    attrs: { index: "4" },
+                                    model: {
+                                      value: _vm.documents.signature,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.documents,
+                                          "signature",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "documents.signature"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "text-danger form-text" },
+                                    [_vm._v(_vm._s(errors[0]))]
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [_vm._v("5.")]),
+                    _vm._v(" "),
+                    _c("td", [_c("strong", [_vm._v("Electricity Bill")])]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("ValidationProvider", {
+                          attrs: {
+                            name: "Electricity Bill",
+                            rules: "required"
                           },
-                          expression: "documents.citizenship"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("3.")]),
-                  _vm._v(" "),
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("upload-button", {
-                        attrs: { index: "3" },
-                        model: {
-                          value: _vm.documents.photo,
-                          callback: function($$v) {
-                            _vm.$set(_vm.documents, "photo", $$v)
-                          },
-                          expression: "documents.photo"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("4.")]),
-                  _vm._v(" "),
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("upload-button", {
-                        attrs: { index: "4" },
-                        model: {
-                          value: _vm.documents.signature,
-                          callback: function($$v) {
-                            _vm.$set(_vm.documents, "signature", $$v)
-                          },
-                          expression: "documents.signature"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [_vm._v("5.")]),
-                  _vm._v(" "),
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c("upload-button", {
-                        attrs: { index: "5" },
-                        model: {
-                          value: _vm.documents.electricityBill,
-                          callback: function($$v) {
-                            _vm.$set(_vm.documents, "electricityBill", $$v)
-                          },
-                          expression: "documents.electricityBill"
-                        }
-                      })
-                    ],
-                    1
-                  )
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(ref) {
+                                var errors = ref.errors
+                                return [
+                                  _c("upload-button", {
+                                    attrs: { index: "5" },
+                                    model: {
+                                      value: _vm.documents.electricityBill,
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.documents,
+                                          "electricityBill",
+                                          $$v
+                                        )
+                                      },
+                                      expression: "documents.electricityBill"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "small",
+                                    { staticClass: "text-danger form-text" },
+                                    [_vm._v(_vm._s(errors[0]))]
+                                  )
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ])
                 ])
               ])
             ])
-          ])
-        ]
-      ),
+          ]
+        )
+      ]),
       _vm._v(" "),
       _c("action-buttons", {
         on: {
           next: function($event) {
-            return _vm.$emit("next")
+            return _vm.handleNext("next")
           },
           back: function($event) {
-            return _vm.$emit("back")
+            return _vm.handleNext("back")
           }
         }
       })
@@ -65227,34 +65365,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { attrs: { width: "50%" } }, [
-      _c("strong", [_vm._v("Citizenship Front")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("Photo")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("Signature")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [_c("strong", [_vm._v("Electricity Bill")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

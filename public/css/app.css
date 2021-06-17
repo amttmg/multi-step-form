@@ -619,6 +619,7 @@
 
 #progressbar .active {
   color: #022D9D;
+  font-weight: bold;
 }
 
 #progressbar .error {
@@ -626,7 +627,7 @@
 }
 
 #progressbar .success {
-  color: #0f6674;
+  color: #0F670C;
 }
 
 #progressbar li {
@@ -700,7 +701,7 @@
 
 #progressbar li.success:before,
 #progressbar li.success:after {
-  background: #0f6674;
+  background: #0F670C;
 }
 
 .progress {

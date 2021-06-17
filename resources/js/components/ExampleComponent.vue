@@ -30,14 +30,30 @@
                             <li @click="set(5)" v-bind:class="{ active: step === 5 }" id="confirm">
                                 <strong>Finish</strong></li>
                         </ul> <!-- fieldsets -->
-                        <account-details v-model="customerInfo.accountInfo" @next="next" @back="prev"
-                                         v-show="step === 1"></account-details>
-                        <personal-details v-model="customerInfo.personalInfo" @next="next" @back="prev"
-                                          v-show="step === 2"></personal-details>
-                        <address-details v-model="customerInfo.addressInfo" @next="next" @back="prev"
-                                         v-show="step === 3"></address-details>
-                        <upload-files v-model="customerInfo.documentsInfo" @next="next" @back="prev"
-                                      v-show="step === 4"></upload-files>
+                        <account-details
+                            ref="accountInfo"
+                            v-model="customerInfo.accountInfo"
+                            @next="next"
+                            @back="prev"
+                            v-show="step === 1"/>
+                        <personal-details
+                            ref="personalInfo"
+                            v-model="customerInfo.personalInfo"
+                            @next="next"
+                            @back="prev"
+                            v-show="step === 2"/>
+                        <address-details
+                            ref="addressInfo"
+                            v-model="customerInfo.addressInfo"
+                            @next="next"
+                            @back="prev"
+                            v-show="step === 3"/>
+                        <upload-files
+                            ref="documentsInfo"
+                            v-model="customerInfo.documentsInfo"
+                            @next="next"
+                            @back="prev"
+                            v-show="step === 4"/>
                     </div>
                 </div>
             </div>
@@ -72,6 +88,20 @@
                 this.step++;
             },
             set(step) {
+                switch (this.step) {
+                    case 1:
+                        this.$refs.accountInfo.handleNext('go');
+                        break;
+                    case 2:
+                        this.$refs.personalInfo.handleNext('go');
+                        break;
+                    case 3:
+                        this.$refs.addressInfo.handleNext('go');
+                        break;
+                    case 4:
+                        this.$refs.documentsInfo.handleNext('go');
+                        break;
+                }
                 this.step = step;
             },
             submit() {

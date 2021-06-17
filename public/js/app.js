@@ -2336,6 +2336,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2368,6 +2384,24 @@ __webpack_require__.r(__webpack_exports__);
       this.step++;
     },
     set: function set(step) {
+      switch (this.step) {
+        case 1:
+          this.$refs.accountInfo.handleNext('go');
+          break;
+
+        case 2:
+          this.$refs.personalInfo.handleNext('go');
+          break;
+
+        case 3:
+          this.$refs.addressInfo.handleNext('go');
+          break;
+
+        case 4:
+          this.$refs.documentsInfo.handleNext('go');
+          break;
+      }
+
       this.step = step;
     },
     submit: function submit() {
@@ -63444,6 +63478,7 @@ var render = function() {
                     expression: "step === 1"
                   }
                 ],
+                ref: "accountInfo",
                 on: { next: _vm.next, back: _vm.prev },
                 model: {
                   value: _vm.customerInfo.accountInfo,
@@ -63463,6 +63498,7 @@ var render = function() {
                     expression: "step === 2"
                   }
                 ],
+                ref: "personalInfo",
                 on: { next: _vm.next, back: _vm.prev },
                 model: {
                   value: _vm.customerInfo.personalInfo,
@@ -63482,6 +63518,7 @@ var render = function() {
                     expression: "step === 3"
                   }
                 ],
+                ref: "addressInfo",
                 on: { next: _vm.next, back: _vm.prev },
                 model: {
                   value: _vm.customerInfo.addressInfo,
@@ -63501,6 +63538,7 @@ var render = function() {
                     expression: "step === 4"
                   }
                 ],
+                ref: "documentsInfo",
                 on: { next: _vm.next, back: _vm.prev },
                 model: {
                   value: _vm.customerInfo.documentsInfo,

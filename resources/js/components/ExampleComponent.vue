@@ -54,6 +54,10 @@
                             @next="next"
                             @back="prev"
                             v-show="step === 4"/>
+                        <confirm-details
+                            :data="customerInfo"
+                            ref="confirmDetails"
+                            v-show="step === 5"/>
                     </div>
                 </div>
             </div>
@@ -66,6 +70,7 @@
     import PersonalDetails from "./PersonalDetails";
     import AddressDetails from "./AddressDetails";
     import UploadFiles from "./UploadFiles";
+    import ConfirmDetails from "./ConfirmDetails";
 
     export default {
         data() {
@@ -76,10 +81,10 @@
                     addressInfo: '',
                     documentsInfo: '',
                 },
-                step: 1,
+                step: 5,
             }
         },
-        components: {UploadFiles, AddressDetails, PersonalDetails, AccountDetails, TheMask},
+        components: {ConfirmDetails, UploadFiles, AddressDetails, PersonalDetails, AccountDetails, TheMask},
         methods: {
             prev() {
                 this.step--;

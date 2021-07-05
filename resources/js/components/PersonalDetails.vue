@@ -9,9 +9,9 @@
                         <ValidationProvider name="Initial" rules="required" v-slot="{ errors }">
                             <select v-model="personalInfo.initial" id="initial" class="form-control" name="initial">
                                 <option value="" selected>Please Select</option>
-                                <option value="1">Mr.</option>
-                                <option value="2">Mrs.</option>
-                                <option value="3">Miss.</option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Mrs.">Mrs.</option>
+                                <option value="Miss.">Miss.</option>
                             </select>
                             <small class="text-danger form-text">{{errors[0]}}</small>
                         </ValidationProvider>

@@ -81,7 +81,7 @@
                     addressInfo: '',
                     documentsInfo: '',
                 },
-                step: 5,
+                step: 1,
             }
         },
         components: {ConfirmDetails, UploadFiles, AddressDetails, PersonalDetails, AccountDetails, TheMask},

@@ -2348,6 +2348,145 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ConfirmDetails",
   props: ['data']
@@ -2454,7 +2593,7 @@ __webpack_require__.r(__webpack_exports__);
         addressInfo: '',
         documentsInfo: ''
       },
-      step: 5
+      step: 1
     };
   },
   components: {
@@ -63530,58 +63669,445 @@ var render = function() {
           _vm._v("Verify Details:")
         ]),
         _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [
-              _vm._v("\n                    Account No:\n                ")
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", { attrs: { colspan: "2", width: "50%" } }, [
+                _vm._v(
+                  "\n                        Account No:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "2", width: "50%" } }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.data.accountInfo.acNumber) +
+                    "\n                    "
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.data.accountInfo.acNumber) +
-                  "\n                "
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [
-              _vm._v("\n                    Branch:\n                ")
+            _c("tr", [
+              _c("th", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        Branch:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.data.accountInfo.branch.text) +
+                    "\n                    "
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.data.accountInfo.branch.text) +
-                  "\n                "
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tr", [
-            _c("td", [
-              _vm._v("\n                    Account Type:\n                ")
+            _c("tr", [
+              _c("th", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        Account Type:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.data.accountInfo.acType) +
+                    "\n                    "
+                )
+              ])
             ]),
             _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(_vm.data.accountInfo.acType) +
-                  "\n                "
+            _vm._m(1),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", { attrs: { width: "25%" } }, [
+                _vm._v(
+                  "\n                        Full Name:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { width: "25%" } }, [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(_vm.data.personalInfo.initial) +
+                    "\n                        " +
+                    _vm._s(_vm.data.personalInfo.firstName) +
+                    "\n                        " +
+                    _vm._s(_vm.data.personalInfo.middleName) +
+                    "\n                        " +
+                    _vm._s(_vm.data.personalInfo.lastName) +
+                    "\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Email:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.email))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Phone:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.mobileNo))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Nationality\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.nationality))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Marital Status:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.maritalStatus))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Religion\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.religion))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Gender:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.gender))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Education\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.education))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Spouse Name:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.spouseName))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Grand Father Name:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.grandfatherName))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Father Name:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.fatherName))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Mother Name:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.motherName))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Citizenship Certificate No:")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzNumber))]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Issuing District :\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingDistrict.text))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Issuing Authority:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingAuthority))
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Issued Date(B.S.):\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzIssueDate))])
+            ]),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Province:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(_vm.data.addressInfo.currentAddress.province.text)
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Province:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(_vm.data.addressInfo.permanentAddress.province.text)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("District:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.data.addressInfo.currentAddress.district.districtName
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        District:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.data.addressInfo.permanentAddress.district.districtName
+                  )
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Municipality:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.data.addressInfo.currentAddress.municipality
+                      .municipalityName
+                  )
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Municipality:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm.data.addressInfo.permanentAddress.municipality
+                      .municipalityName
+                  )
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Ward No:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.ward))
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Ward No:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.ward))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Address:")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.address))
+              ]),
+              _vm._v(" "),
+              _c("th", [
+                _vm._v(
+                  "\n                        Address:\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.address))
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        Citizenship\n                        "
+                ),
+                _c(
+                  "div",
+                  { staticClass: "image-area" },
+                  [
+                    _c(
+                      "viewer",
+                      {
+                        attrs: {
+                          images: [_vm.data.documentsInfo.citizenship],
+                          options: {
+                            toolbar: false,
+                            navbar: false,
+                            title: false
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "img img-thumbnail",
+                          staticStyle: { width: "400px" },
+                          attrs: {
+                            src: _vm.data.documentsInfo.citizenship,
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        Photo:\n                        "
+                ),
+                _c(
+                  "div",
+                  { staticClass: "image-area" },
+                  [
+                    _c(
+                      "viewer",
+                      {
+                        attrs: {
+                          images: [_vm.data.documentsInfo.photo],
+                          options: {
+                            toolbar: false,
+                            navbar: false,
+                            title: false
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "img img-thumbnail",
+                          staticStyle: { width: "400px" },
+                          attrs: { src: _vm.data.documentsInfo.photo, alt: "" }
+                        })
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", { attrs: { colspan: "2" } }, [
+                _vm._v(
+                  "\n                        Signature\n                        "
+                ),
+                _c(
+                  "div",
+                  { staticClass: "image-area" },
+                  [
+                    _c(
+                      "viewer",
+                      {
+                        attrs: {
+                          images: [_vm.data.documentsInfo.signature],
+                          options: {
+                            toolbar: false,
+                            navbar: false,
+                            title: false
+                          }
+                        }
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "img img-thumbnail",
+                          staticStyle: { width: "400px" },
+                          attrs: {
+                            src: _vm.data.documentsInfo.signature,
+                            alt: ""
+                          }
+                        })
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                { attrs: { colspan: "2" } },
+                [
+                  _vm._v(
+                    "\n                        Electricity Bill\n                        "
+                  ),
+                  _c(
+                    "viewer",
+                    {
+                      attrs: {
+                        images: [_vm.data.documentsInfo.electricityBill],
+                        options: { toolbar: false, navbar: false, title: false }
+                      }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "img img-thumbnail",
+                        staticStyle: { width: "400px" },
+                        attrs: {
+                          src: _vm.data.documentsInfo.electricityBill,
+                          alt: ""
+                        }
+                      })
+                    ]
+                  )
+                ],
+                1
               )
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4)
+          ])
         ])
       ]
     )
@@ -63593,7 +64119,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "bg-light" }, [
-      _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+      _c("th", { staticClass: "text-center", attrs: { colspan: "4" } }, [
         _vm._v("Account Details")
       ])
     ])
@@ -63603,7 +64129,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticClass: "bg-light" }, [
-      _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+      _c("th", { staticClass: "text-center", attrs: { colspan: "4" } }, [
         _vm._v("Personal Details")
       ])
     ])
@@ -63612,11 +64138,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [_vm._v("\n                    Account No:\n                ")]),
-      _vm._v(" "),
-      _c("td", [
-        _vm._v("\n                    2010100021206011\n                ")
+    return _c("tr", { staticClass: "bg-light" }, [
+      _c("th", { staticClass: "text-center", attrs: { colspan: "4" } }, [
+        _vm._v("Address Details")
       ])
     ])
   },
@@ -63625,21 +64149,23 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", [_vm._v("\n                    Branch:\n                ")]),
+      _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+        _vm._v("Current Address")
+      ]),
       _vm._v(" "),
-      _c("td", [_vm._v("\n                    Dhankuta\n                ")])
+      _c("th", { staticClass: "text-center", attrs: { colspan: "2" } }, [
+        _vm._v("Permanent Address")
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("td", [
-        _vm._v("\n                    Account Type:\n                ")
-      ]),
-      _vm._v(" "),
-      _c("td", [_vm._v("\n                    Saving\n                ")])
+    return _c("tr", { staticClass: "bg-light" }, [
+      _c("th", { staticClass: "text-center", attrs: { colspan: "4" } }, [
+        _vm._v("Documents")
+      ])
     ])
   }
 ]
@@ -63996,15 +64522,15 @@ var render = function() {
                                   [_vm._v("Please Select")]
                                 ),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
+                                _c("option", { attrs: { value: "Mr." } }, [
                                   _vm._v("Mr.")
                                 ]),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "2" } }, [
+                                _c("option", { attrs: { value: "Mrs." } }, [
                                   _vm._v("Mrs.")
                                 ]),
                                 _vm._v(" "),
-                                _c("option", { attrs: { value: "3" } }, [
+                                _c("option", { attrs: { value: "Miss." } }, [
                                   _vm._v("Miss.")
                                 ])
                               ]

@@ -188,6 +188,60 @@
                 currentDistrictsList: [],
                 permanentMunicipalityList: [],
                 currentMunicipalityList: [],
+                address1: {
+                    "sameAsPermanent": true,
+                    "hasError": 0,
+                    "permanentAddress": {
+                        "province": {
+                            "value": 3,
+                            "text": "Bagmati Province"
+                        },
+                        "district": {
+                            "id": 24,
+                            "province_id": 3,
+                            "districtName": "Chitwan",
+                            "activeStatus": "A",
+                            "created_at": "2021-06-08T03:14:48.000000Z",
+                            "updated_at": "2021-06-08T03:14:48.000000Z"
+                        },
+                        "municipality": {
+                            "id": 270,
+                            "district_id": 24,
+                            "municipalityName": "Kalika",
+                            "activeStatus": "A",
+                            "created_at": "2021-06-08T03:14:48.000000Z",
+                            "updated_at": "2021-06-08T03:14:48.000000Z"
+                        },
+                        "ward": "1",
+                        "street": "amrit tmang",
+                        "address": "धनकुटा"
+                    },
+                    "currentAddress": {
+                        "province": {
+                            "value": 3,
+                            "text": "Bagmati Province"
+                        },
+                        "district": {
+                            "id": 24,
+                            "province_id": 3,
+                            "districtName": "Chitwan",
+                            "activeStatus": "A",
+                            "created_at": "2021-06-08T03:14:48.000000Z",
+                            "updated_at": "2021-06-08T03:14:48.000000Z"
+                        },
+                        "municipality": {
+                            "id": 270,
+                            "district_id": 24,
+                            "municipalityName": "Kalika",
+                            "activeStatus": "A",
+                            "created_at": "2021-06-08T03:14:48.000000Z",
+                            "updated_at": "2021-06-08T03:14:48.000000Z"
+                        },
+                        "ward": "1",
+                        "street": "amrit tmang",
+                        "address": "धनकुटा"
+                    }
+                },
                 address: {
                     sameAsPermanent: false,
                     hasError: 2,

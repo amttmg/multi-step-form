@@ -8,7 +8,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-body">
+                   <!-- <div id="loader">Please Wait</div>-->
+                    <div v-if="submitted" class="card-body text-center" style="font-size: 20px;color: #022D9D">
+                        <i class="fa fa-check-circle fa-5x"></i><br/>
+                        Dear customer,<br/>
+                        Your KYC update request has been received. We will manually verify and update your details. We will inform
+                        you after completion.
+                        <br/>Thank you for using RBB EKYC <br/><br/>
+                        <img width="150px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
+                    </div>
+                    <div class="card-body" v-else>
                         <ul id="progressbar">
                             <li @click="set(1)"
                                 v-bind:class="{ active: step === 1, error: customerInfo.accountInfo.hasError===1, success: customerInfo.accountInfo.hasError===0 }"
@@ -29,7 +38,7 @@
                                 <strong>Documents Upload</strong></li>
                             <li @click="set(5)" v-bind:class="{ active: step === 5 }" id="confirm">
                                 <strong>Finish</strong></li>
-                        </ul> <!-- fieldsets -->
+                        </ul>
                         <account-details
                             ref="accountInfo"
                             v-model="customerInfo.accountInfo"
@@ -55,6 +64,9 @@
                             @back="prev"
                             v-show="step === 4"/>
                         <confirm-details
+                            @next="next"
+                            @back="prev"
+                            @submit="handleSubmit"
                             :data="customerInfo"
                             ref="confirmDetails"
                             v-show="step === 5"/>
@@ -75,6 +87,103 @@
     export default {
         data() {
             return {
+                customerInfo1: {
+                    accountInfo: {
+                        branch: {
+                            value: "153",
+                            text: "ANBUKHAIRENI [319]"
+                        },
+                        acType: "Current",
+                        acNumber: "1111111111111111",
+                        hasError: 0
+                    },
+                    "personalInfo": {
+                        "initial": "Miss.",
+                        "firstName": "Jacob",
+                        "middleName": "Hamilton Guthrie",
+                        "lastName": "Dillard",
+                        "nationality": "1",
+                        "email": "rokiwoxugy@mailinator.com",
+                        "mobileNo": "1111111111",
+                        "maritalStatus": "Other",
+                        "religion": "hindu",
+                        "gender": "female",
+                        "education": "SLC/SEE",
+                        "spouseName": "Simon Norman",
+                        "grandfatherName": "Giacomo Klein",
+                        "fatherName": "Selma Conley",
+                        "motherName": "Amber Mejia",
+                        "ctzNumber": "Anim eu sequi blandi",
+                        "ctzIssuingDistrict": {
+                            "value": "2",
+                            "text": "Arghakhanchi"
+                        },
+                        "ctzIssueDate": "071976",
+                        "ctzIssuingAuthority": "DISTRICT ADMINISTRATION OFFICE",
+                        "hasError": 0
+                    },
+                    "addressInfo": {
+                        "sameAsPermanent": true,
+                        "hasError": 0,
+                        "permanentAddress": {
+                            "province": {
+                                "value": 3,
+                                "text": "Bagmati Province"
+                            },
+                            "district": {
+                                "id": 24,
+                                "province_id": 3,
+                                "districtName": "Chitwan",
+                                "activeStatus": "A",
+                                "created_at": "2021-06-08T03:14:48.000000Z",
+                                "updated_at": "2021-06-08T03:14:48.000000Z"
+                            },
+                            "municipality": {
+                                "id": 270,
+                                "district_id": 24,
+                                "municipalityName": "Kalika",
+                                "activeStatus": "A",
+                                "created_at": "2021-06-08T03:14:48.000000Z",
+                                "updated_at": "2021-06-08T03:14:48.000000Z"
+                            },
+                            "ward": "1",
+                            "street": "amrit tmang",
+                            "address": "धनकुटा"
+                        },
+                        "currentAddress": {
+                            "province": {
+                                "value": 3,
+                                "text": "Bagmati Province"
+                            },
+                            "district": {
+                                "id": 24,
+                                "province_id": 3,
+                                "districtName": "Chitwan",
+                                "activeStatus": "A",
+                                "created_at": "2021-06-08T03:14:48.000000Z",
+                                "updated_at": "2021-06-08T03:14:48.000000Z"
+                            },
+                            "municipality": {
+                                "id": 270,
+                                "district_id": 24,
+                                "municipalityName": "Kalika",
+                                "activeStatus": "A",
+                                "created_at": "2021-06-08T03:14:48.000000Z",
+                                "updated_at": "2021-06-08T03:14:48.000000Z"
+                            },
+                            "ward": "1",
+                            "street": "amrit tmang",
+                            "address": "धनकुटा"
+                        }
+                    },
+                    "documentsInfo": {
+                        "hasError": 0,
+                        "citizenship": "files/ucUhEaiL9FqKgtaAApAIEBSublqluafeBYSy3IwN.jpg",
+                        "photo": "files/i1IqtQe1fmU4RR87VKLCGDCKw29xQUlDLZqr7E0H.jpg",
+                        "signature": "files/hO92JvCDga98Zc0PPW5TTNhKYps3ZPhV70DhuFvv.jpg",
+                        "electricityBill": "files/rmoXcd4pkZrHNJgxVBmu5dZ4Wt2cQrvJB3PLb9qn.jpg"
+                    }
+                },
                 customerInfo: {
                     accountInfo: '',
                     personalInfo: '',
@@ -82,6 +191,7 @@
                     documentsInfo: '',
                 },
                 step: 1,
+                submitted: false
             }
         },
         components: {ConfirmDetails, UploadFiles, AddressDetails, PersonalDetails, AccountDetails, TheMask},
@@ -109,9 +219,21 @@
                 }
                 this.step = step;
             },
-            submit() {
-                alert('Submit to blah and show blah and etc.');
+            handleSubmit() {
+                this.submitted = true;
             }
         }
     }
 </script>
+<style>
+    #loader {
+        opacity: 0.9;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('https://www.isostech.com/wp-content/uploads/2015/04/loader.gif.pagespeed.ce.T8p3DJRaGA.gif') 50% 50% no-repeat rgb(249, 249, 249);
+    }
+</style>

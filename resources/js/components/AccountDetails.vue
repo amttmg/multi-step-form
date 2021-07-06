@@ -61,6 +61,15 @@
                     acType: '',
                     acNumber: '',
                     hasError: 2,
+                },
+                accountInfo1: {
+                    branch: {
+                        value: "153",
+                        text: "ANBUKHAIRENI [319]"
+                    },
+                    acType: "Current",
+                    acNumber: "1111111111111111",
+                    hasError: 0
                 }
             }
         },

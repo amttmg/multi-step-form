@@ -301,8 +301,33 @@
                     ctzIssueDate: '',
                     ctzIssuingAuthority: 'DISTRICT ADMINISTRATION OFFICE',
                     hasError: 2,
+            },
+                "personalInfo1": {
+                    "initial": "Miss.",
+                    "firstName": "Jacob",
+                    "middleName": "Hamilton Guthrie",
+                    "lastName": "Dillard",
+                    "nationality": "1",
+                    "email": "rokiwoxugy@mailinator.com",
+                    "mobileNo": "1111111111",
+                    "maritalStatus": "Other",
+                    "religion": "hindu",
+                    "gender": "female",
+                    "education": "SLC/SEE",
+                    "spouseName": "Simon Norman",
+                    "grandfatherName": "Giacomo Klein",
+                    "fatherName": "Selma Conley",
+                    "motherName": "Amber Mejia",
+                    "ctzNumber": "Anim eu sequi blandi",
+                    "ctzIssuingDistrict": {
+                        "value": "2",
+                        "text": "Arghakhanchi"
+                    },
+                    "ctzIssueDate": "071976",
+                    "ctzIssuingAuthority": "DISTRICT ADMINISTRATION OFFICE",
+                    "hasError": 0
+                },
             }
-        }
         },
         methods: {
             handleNext(event) {

@@ -79,6 +79,13 @@
                     photo: '',
                     signature: '',
                     electricityBill: ''
+                },
+                documents1: {
+                    "hasError": 0,
+                    "citizenship": "files/ucUhEaiL9FqKgtaAApAIEBSublqluafeBYSy3IwN.jpg",
+                    "photo": "files/i1IqtQe1fmU4RR87VKLCGDCKw29xQUlDLZqr7E0H.jpg",
+                    "signature": "files/hO92JvCDga98Zc0PPW5TTNhKYps3ZPhV70DhuFvv.jpg",
+                    "electricityBill": "files/rmoXcd4pkZrHNJgxVBmu5dZ4Wt2cQrvJB3PLb9qn.jpg"
                 }
             }
         },

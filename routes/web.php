@@ -28,9 +28,9 @@ Route::get('/get-municipalities/{id}', function ($id) {
     return response()->json(Municipality::where('district_id', $id)->get());
 });
 Route::post('/upload-document', function (Request $request) {
-    $path = $request->file('file')->store('files');
+    $path = $request->file('file')->store('/', 'public_uploads');
 
-    return $path;
+    return '/uploads/'.$path;
 });
 
 Route::get('/test', function () {

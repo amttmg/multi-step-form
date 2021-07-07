@@ -2899,6 +2899,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -3052,6 +3053,26 @@ __webpack_require__.r(__webpack_exports__);
       this.step = step;
     },
     handleSubmit: function handleSubmit() {
+      if (this.customerInfo.accountInfo.hasError) {
+        this.step = 1;
+        return;
+      }
+
+      if (this.customerInfo.personalInfo.hasError) {
+        this.step = 2;
+        return;
+      }
+
+      if (this.customerInfo.addressInfo.hasError) {
+        this.step = 3;
+        return;
+      }
+
+      if (this.customerInfo.documentsInfo.hasError) {
+        this.step = 4;
+        return;
+      }
+
       this.submitted = true;
     }
   }
@@ -68283,7 +68304,9 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "col-lg-6 col-md-12 text-lg-left text-center" },
+        {
+          staticClass: "col-lg-4 offset-lg-2 col-md-12 text-lg-left text-center"
+        },
         [
           _c(
             "h1",
@@ -68324,7 +68347,7 @@ var render = function() {
                   _vm._v("\n                    Dear customer,"),
                   _c("br"),
                   _vm._v(
-                    "\n                    Your KYC update request has been received. We will manually verify and update your details. We will inform\n                    you after completion.\n                    "
+                    "\n                    Your KYC update request has been received. We will manually verify and update your details. We\n                    will inform\n                    you after completion.\n                    "
                   ),
                   _c("br"),
                   _vm._v("Thank you for using RBB EKYC "),
@@ -68561,7 +68584,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "col-lg-6 col-md-12 text-lg-left text-center" },
+      { staticClass: "col-lg-3 col-md-12 text-lg-left text-center" },
       [
         _c("img", {
           attrs: {

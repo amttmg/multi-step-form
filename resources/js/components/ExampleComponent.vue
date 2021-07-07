@@ -1,22 +1,23 @@
 <template>
     <div class="container">
         <div class="row mt-4 mb-4">
-            <div class="col-lg-6 col-md-12 text-lg-left text-center">
+            <div class="col-lg-3 col-md-12 text-lg-left text-center">
                 <img width="250px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
             </div>
-            <div class="col-lg-6 col-md-12 text-lg-left text-center">
-               <h1 style="margin-bottom: -7px;margin-top: 16px;font-weight: bolder;color:#022D9D">ONLINE KYC</h1>
-               <SMALL style="margin-left: 29px;color:#022D9D">UPDATE YOUR KYC ONLINE</SMALL>
+            <div class="col-lg-4 offset-lg-2 col-md-12 text-lg-left text-center">
+                <h1 style="margin-bottom: -7px;margin-top: 16px;font-weight: bolder;color:#022D9D">ONLINE KYC</h1>
+                <SMALL style="margin-left: 29px;color:#022D9D">UPDATE YOUR KYC ONLINE</SMALL>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                   <!-- <div id="loader">Please Wait</div>-->
+                    <!-- <div id="loader">Please Wait</div>-->
                     <div v-if="submitted" class="card-body text-center" style="font-size: 20px;color: #022D9D">
                         <i class="fa fa-check-circle fa-5x"></i><br/>
                         Dear customer,<br/>
-                        Your KYC update request has been received. We will manually verify and update your details. We will inform
+                        Your KYC update request has been received. We will manually verify and update your details. We
+                        will inform
                         you after completion.
                         <br/>Thank you for using RBB EKYC <br/><br/>
                         <img width="150px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
@@ -224,6 +225,22 @@
                 this.step = step;
             },
             handleSubmit() {
+                if (this.customerInfo.accountInfo.hasError) {
+                    this.step = 1;
+                    return;
+                }
+                if (this.customerInfo.personalInfo.hasError) {
+                    this.step = 2;
+                    return;
+                }
+                if (this.customerInfo.addressInfo.hasError) {
+                    this.step = 3;
+                    return;
+                }
+                if (this.customerInfo.documentsInfo.hasError) {
+                    this.step = 4;
+                    return;
+                }
                 this.submitted = true;
             }
         }

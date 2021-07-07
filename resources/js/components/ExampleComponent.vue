@@ -4,6 +4,10 @@
             <div class="col-lg-6 col-md-12 text-lg-left text-center">
                 <img width="250px" src="https://www.rbb.com.np/uploads/config/1588430290-348980.jpg" alt=""/>
             </div>
+            <div class="col-lg-6 col-md-12 text-lg-left text-center">
+               <h1 style="margin-bottom: -7px;margin-top: 16px;font-weight: bolder;color:#022D9D">ONLINE KYC</h1>
+               <SMALL style="margin-left: 29px;color:#022D9D">UPDATE YOUR KYC ONLINE</SMALL>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">

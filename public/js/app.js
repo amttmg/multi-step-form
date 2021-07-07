@@ -2778,10 +2778,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ConfirmDetails",
@@ -2821,6 +2817,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddressDetails__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddressDetails */ "./resources/js/components/AddressDetails.vue");
 /* harmony import */ var _UploadFiles__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./UploadFiles */ "./resources/js/components/UploadFiles.vue");
 /* harmony import */ var _ConfirmDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ConfirmDetails */ "./resources/js/components/ConfirmDetails.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -67110,13 +67110,15 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.data.accountInfo.branch.text) +
-                      "\n                    "
-                  )
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.accountInfo.branch.text
+                        ? _vm.data.accountInfo.branch.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67126,13 +67128,9 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.data.accountInfo.acType) +
-                      "\n                    "
-                  )
-                ])
+                _c("td", {
+                  domProps: { textContent: _vm._s(_vm.data.accountInfo.acType) }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67168,13 +67166,19 @@ var render = function() {
               _c("tr", [
                 _c("th", [_vm._v("Email:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.email))])
+                _c("td", {
+                  domProps: { textContent: _vm._s(_vm.data.personalInfo.email) }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Phone:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.mobileNo))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.mobileNo)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67184,13 +67188,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.nationality))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.nationality)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Marital Status:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.maritalStatus))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.maritalStatus)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67200,13 +67212,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.religion))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.religion)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Gender:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.gender))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.gender)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67216,13 +67236,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.education))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.education)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Spouse Name:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.spouseName))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.spouseName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67232,15 +67260,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.grandfatherName))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.grandfatherName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Father Name:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.fatherName))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.fatherName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67250,13 +67284,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.motherName))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.motherName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Citizenship Certificate No:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzNumber))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.ctzNumber)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67266,17 +67308,27 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingDistrict.text))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.personalInfo.ctzIssuingDistrict.text
+                        ? _vm.data.personalInfo.ctzIssuingDistrict.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Issuing Authority:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingAuthority))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.personalInfo.ctzIssuingAuthority
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67286,7 +67338,11 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzIssueDate))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.ctzIssueDate)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67300,52 +67356,64 @@ var render = function() {
               _c("tr", [
                 _c("th", [_vm._v("Province:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.data.addressInfo.currentAddress.province.text)
-                  )
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.province.text
+                        ? _vm.data.addressInfo.currentAddress.province.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("District:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.currentAddress.district.districtName
                     )
-                  )
-                ])
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Municipality:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.currentAddress.municipality
                         .municipalityName
                     )
-                  )
-                ])
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Ward No:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.ward))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.ward
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Address:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.address))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.address
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67363,11 +67431,15 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.data.addressInfo.permanentAddress.province.text)
-                  )
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.province.text
+                        ? _vm.data.addressInfo.permanentAddress.province.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67377,14 +67449,14 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.permanentAddress.district
                         .districtName
                     )
-                  )
-                ])
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67411,9 +67483,13 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.ward))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.ward
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67423,9 +67499,13 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.address))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.address
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67605,13 +67685,12 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { attrs: { colspan: "2", width: "50%" } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.data.accountInfo.acNumber) +
-                      "\n                    "
-                  )
-                ])
+                _c("td", {
+                  attrs: { colspan: "2", width: "50%" },
+                  domProps: {
+                    textContent: _vm._s(_vm.data.accountInfo.acNumber)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67621,13 +67700,16 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { attrs: { colspan: "2" } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.data.accountInfo.branch.text) +
-                      "\n                    "
-                  )
-                ])
+                _c("td", {
+                  attrs: { colspan: "2" },
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.accountInfo.branch.text
+                        ? _vm.data.accountInfo.branch.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
@@ -67637,13 +67719,10 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", { attrs: { colspan: "2" } }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.data.accountInfo.acType) +
-                      "\n                    "
-                  )
-                ])
+                _c("td", {
+                  attrs: { colspan: "2" },
+                  domProps: { textContent: _vm._s(_vm.data.accountInfo.acType) }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67677,13 +67756,19 @@ var render = function() {
                 _vm._v(" "),
                 _c("th", [_vm._v("Email:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.email))])
+                _c("td", {
+                  domProps: { textContent: _vm._s(_vm.data.personalInfo.email) }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Phone:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.mobileNo))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.mobileNo)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67691,13 +67776,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.nationality))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.nationality)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Marital Status:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.maritalStatus))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.maritalStatus)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67705,13 +67798,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.religion))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.religion)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Gender:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.gender))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.gender)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67719,13 +67820,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.education))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.education)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Spouse Name:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.spouseName))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.spouseName)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67733,15 +67842,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.grandfatherName))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.grandfatherName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Father Name:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.fatherName))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.fatherName)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67749,13 +67864,21 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.motherName))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.motherName)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Citizenship Certificate No:")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzNumber))]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.ctzNumber)
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67763,17 +67886,27 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingDistrict.text))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.personalInfo.ctzIssuingDistrict.text
+                        ? _vm.data.personalInfo.ctzIssuingDistrict.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Issuing Authority:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.personalInfo.ctzIssuingAuthority))
-                ]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.personalInfo.ctzIssuingAuthority
+                    )
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67781,7 +67914,11 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm.data.personalInfo.ctzIssueDate))])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(_vm.data.personalInfo.ctzIssueDate)
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -67809,11 +67946,15 @@ var render = function() {
               _c("tr", [
                 _c("th", [_vm._v("Province:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.data.addressInfo.currentAddress.province.text)
-                  )
-                ]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.province.text
+                        ? _vm.data.addressInfo.currentAddress.province.text
+                        : ""
+                    )
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67821,23 +67962,27 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(_vm.data.addressInfo.permanentAddress.province.text)
-                  )
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.province.text
+                        ? _vm.data.addressInfo.permanentAddress.province.text
+                        : ""
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("District:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.currentAddress.district.districtName
                     )
-                  )
-                ]),
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67845,27 +67990,27 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.permanentAddress.district
                         .districtName
                     )
-                  )
-                ])
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Municipality:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.currentAddress.municipality
                         .municipalityName
                     )
-                  )
-                ]),
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67873,22 +68018,26 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
                       _vm.data.addressInfo.permanentAddress.municipality
                         .municipalityName
                     )
-                  )
-                ])
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Ward No:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.ward))
-                ]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.ward
+                    )
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67896,17 +68045,25 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.ward))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.ward
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", [
                 _c("th", [_vm._v("Address:")]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.currentAddress.address))
-                ]),
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.currentAddress.address
+                    )
+                  }
+                }),
                 _vm._v(" "),
                 _c("th", [
                   _vm._v(
@@ -67914,9 +68071,13 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("td", [
-                  _vm._v(_vm._s(_vm.data.addressInfo.permanentAddress.address))
-                ])
+                _c("td", {
+                  domProps: {
+                    textContent: _vm._s(
+                      _vm.data.addressInfo.permanentAddress.address
+                    )
+                  }
+                })
               ]),
               _vm._v(" "),
               _c("tr", { staticClass: "bg-light" }, [
@@ -68117,7 +68278,35 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row mt-4 mb-4" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-lg-6 col-md-12 text-lg-left text-center" },
+        [
+          _c(
+            "h1",
+            {
+              staticStyle: {
+                "margin-bottom": "-7px",
+                "margin-top": "16px",
+                "font-weight": "bolder",
+                color: "#022D9D"
+              }
+            },
+            [_vm._v("ONLINE KYC")]
+          ),
+          _vm._v(" "),
+          _c(
+            "SMALL",
+            { staticStyle: { "margin-left": "29px", color: "#022D9D" } },
+            [_vm._v("UPDATE YOUR KYC ONLINE")]
+          )
+        ],
+        1
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
@@ -68370,22 +68559,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row mt-4 mb-4" }, [
-      _c(
-        "div",
-        { staticClass: "col-lg-6 col-md-12 text-lg-left text-center" },
-        [
-          _c("img", {
-            attrs: {
-              width: "250px",
-              src:
-                "https://www.rbb.com.np/uploads/config/1588430290-348980.jpg",
-              alt: ""
-            }
-          })
-        ]
-      )
-    ])
+    return _c(
+      "div",
+      { staticClass: "col-lg-6 col-md-12 text-lg-left text-center" },
+      [
+        _c("img", {
+          attrs: {
+            width: "250px",
+            src: "https://www.rbb.com.np/uploads/config/1588430290-348980.jpg",
+            alt: ""
+          }
+        })
+      ]
+    )
   }
 ]
 render._withStripped = true
